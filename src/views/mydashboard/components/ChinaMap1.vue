@@ -1,5 +1,5 @@
 <template>
-    <div id="chineChart" style="width: 100%;height:400px;"></div>
+    <div id="chineChart" class="map"></div>
 </template>
 
 
@@ -1022,4 +1022,12 @@ export default {
     }
 }
 </script>
+
+<style lang="css" scoped>
+    .map{
+        height:350px;
+        background:gray;
+        width: 100%;
+    }
+</style>
 

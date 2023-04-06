@@ -11,6 +11,7 @@
         :active-text-color="variables.menuActiveText"
         :collapse-transition="false"
         mode="vertical"
+        style="padding: 10px;"
       >
         <sidebar-item v-for="route in permission_routes" :key="route.path" :item="route" :base-path="route.path" />
       </el-menu>
@@ -41,6 +42,7 @@ export default {
       return path
     },
     showLogo() {
+      return true
       return this.$store.state.settings.sidebarLogo
     },
     variables() {
@@ -52,3 +54,7 @@ export default {
   }
 }
 </script>
+
+<style>
+
+</style>

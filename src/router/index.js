@@ -70,33 +70,22 @@ export const constantRoutes = [
     component: () => import('@/views/error-page/401'),
     hidden: true
   },
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/dashboard',
-    children: [
-      {
-        path: 'dashboard',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard',
-        meta: { title: 'Dashboard', icon: 'dashboard', affix: true }
-      }
-    ]
-  },
+  
     // ////////////////////////////////////////////////////////////////////////////////////
       // ////////////////////////////////////////////////////////////////////////////////////
         // ////////////////////////////////////////////////////////////////////////////////////
           // ////////////////////////////////////////////////////////////////////////////////////
             // ////////////////////////////////////////////////////////////////////////////////////
   {
-    path: '/mydashboard',
+    path: '/',
     component: Layout,
+     redirect: '/dashboard',
     children: [
       {
-        path: 'index',
+        path: 'dashboard',
         component: () => import('@/views/mydashboard/index'),
-        name: 'Mydashboard',
-        meta: { title: '首页', icon: 'documentation', affix: true }
+        name: 'Dashboard',
+        meta: { title: '首页', icon: 'dashboard', affix: true }
       }
     ]
   },
@@ -109,6 +98,18 @@ export const constantRoutes = [
           component: () => import('@/views/spider/index'),
           name: 'spider',
           meta: { title: '爬虫管理', icon: 'documentation', affix: true }
+        }
+      ]
+    },
+    {
+      path: '/spider',
+      component: Layout,
+      children: [
+        {
+          path: 'index',
+          component: () => import('@/views/spider/index'),
+          name: 'spider',
+          meta: { title: '插件管理', icon: 'documentation', affix: true }
         }
       ]
     },
@@ -150,7 +151,7 @@ export const constantRoutes = [
     component: Layout,
     name: 'sites',
     meta: {
-      title: '团伙分析',
+      title: '组织分析',
       icon: 'el-icon-s-help'
     },
     children: [
@@ -158,6 +159,18 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/malware-group/index'),
         name: 'MalwareGan',
+        meta: { title: '团伙分析总览', icon: 'documentation', affix: true }
+      },
+      {
+        path: '/analyse/index',
+        component: () => import('@/views/malware-group/analyse/index'),
+        name: 'analyse1',
+        meta: { title: '团伙分析', icon: 'documentation', affix: true }
+      },
+      {
+        path: '/analyse/index',
+        component: () => import('@/views/malware-group/analyse/index'),
+        name: 'analyse2',
         meta: { title: '团伙分析', icon: 'documentation', affix: true }
       },
     ]
@@ -168,6 +181,19 @@ export const constantRoutes = [
         // ////////////////////////////////////////////////////////////////////////////////////
           // ////////////////////////////////////////////////////////////////////////////////////
             // ////////////////////////////////////////////////////////////////////////////////////
+  {
+    path: '/origin',
+    component: Layout,
+    redirect: '/dashboard1',
+    children: [
+      {
+        path: 'dashboard1',
+        component: () => import('@/views/dashboard/index'),
+        name: 'Dashboard1',
+        meta: { title: 'Dashboard1', icon: 'dashboard', affix: true }
+      }
+    ]
+  },
   {
     path: '/documentation',
     component: Layout,

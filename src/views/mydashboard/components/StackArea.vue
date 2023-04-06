@@ -1,8 +1,7 @@
 <template>
     <div>
-        <h4>描述：全部下载网站数量、ip数量、</h4>
-        
-        <div id="stack-area-container"></div> 
+            <!-- TODO:描述：全部下载网站数量、ip数量、 -->
+            <div id="stack-area-container"></div>   
     </div>
 
 </template>
@@ -25,9 +24,11 @@ export default {
             .then((data) => {
                 const area = new Area('stack-area-container', {
                 data,
+                autoFit:true,
                 xField: 'date',
                 yField: 'value',
                 seriesField: 'country',
+                height:350,
                 // TODO:配置折线趋势填充 这里是自己加的，不确定能不能兼容
                 // area: {
                 //     style: {
@@ -57,7 +58,9 @@ export default {
 </script>
 
 <style scoped>
-    .tack-area-container{
-        height: 300px;
+    .h4{
+        margin: 0px; padding: 0px;
+        line-height:1;
     }
+
 </style>

@@ -7,7 +7,10 @@
         <navbar />
         <tags-view v-if="needTagsView" />
       </div>
-      <app-main />
+      <!-- <el-scrollbar  style="height: 100%;" class="scrollbar-for"> -->
+         <app-main />
+      <!-- </el-scrollbar> -->
+     
       <right-panel v-if="showSettings">
         <settings />
       </right-panel>
@@ -99,4 +102,6 @@ export default {
   .mobile .fixed-header {
     width: 100%;
   }
+
+
 </style>

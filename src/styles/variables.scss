@@ -8,16 +8,32 @@ $tiffany: #4AB7BD;
 $yellow:#FEC171;
 $panGreen: #30B08F;
 
+// 原本的sidebar
+// $menuText:#bfcbd9; // 侧栏样式
+// $menuActiveText:#409EFF;  //菜单激活文字颜色
+// $subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951
+
+// $menuBg:#304156;
+// $menuHover:#263445;
+
+// $subMenuBg:#1f2d3d;
+// $subMenuHover:#001528;
+
+// $sideBarWidth: 210px;
+
+
+
+
 // sidebar
-$menuText:#bfcbd9;
-$menuActiveText:#409EFF;
-$subMenuActiveText:#f4f4f5; // https://github.com/ElemeFE/element/issues/12951
+$menuText:#5F5F5F; //TODO: 侧栏样式
+$menuActiveText:#8833FF;  //菜单激活文字颜色
+$subMenuActiveText:#8833FF; // https://github.com/ElemeFE/element/issues/12951
 
-$menuBg:#304156;
-$menuHover:#263445;
+$menuBg:#ffffff;
+$menuHover:#F1E6FF;
 
-$subMenuBg:#1f2d3d;
-$subMenuHover:#001528;
+$subMenuBg:#faf6ff;  //子菜单背景色
+$subMenuHover:#F1E6FF; //子菜单悬浮背景色
 
 $sideBarWidth: 210px;
 

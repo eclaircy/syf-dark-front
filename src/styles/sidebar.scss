@@ -224,3 +224,41 @@
     }
   }
 }
+
+// 渐变色background-image: linear-gradient(to top, #cd9cf2 0%, #f6f3ff 100%);
+// 主目录被激活后的菜单背景色
+// .el-menu-item.is-active {
+//   background-color: #F1E6FF !important;
+// }
+
+// .hover > .el-menu-item{
+//   min-width: 190.2px !important;
+//   border-radius: 14px;
+// }
+
+.el-menu-item.is-active {
+  background-image: linear-gradient(to right, #cd9cf2 0%, #f6f3ff 100%);
+  border-radius: 14px;
+}
+
+// TODO:子目录被激活后的菜单背景色
+.is-active > .el-submenu__title {
+  background-image: #f3e9ff !important;
+  // border-radius: 14px;
+}
+
+.el-menu-item{
+  border-radius: 14px;
+}
+.el-submenu__title{
+  border-radius: 14px;
+}
+.el-submenu .el-menu-item{
+  border-radius: 0px;
+  min-width: 190.2px !important;
+}
+
+// #app .sidebar-container .nest-menu .el-submenu > .el-submenu__title, #app .sidebar-container .el-submenu .el-menu-item {
+//   min-width: 190.2px !important;
+//   /* background-color: #faf6ff !important; */
+// }

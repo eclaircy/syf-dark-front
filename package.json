@@ -14,6 +14,7 @@
     "test:ci": "npm run lint && npm run test:unit"
   },
   "dependencies": {
+    "@amcharts/amcharts5": "^5.3.9",
     "@amcharts/amcharts5-geodata": "^5.1.0",
     "@antv/g2plot": "^2.4.28",
     "@antv/g6": "^4.8.8",
@@ -26,7 +27,6 @@
     "driver.js": "0.9.5",
     "dropzone": "5.5.1",
     "echarts": "4.2.1",
-    "element-ui": "2.13.2",
     "file-saver": "2.0.1",
     "fuse.js": "3.4.4",
     "jQuery": "^1.7.4",
@@ -60,6 +60,7 @@
     "chalk": "2.4.2",
     "chokidar": "2.1.5",
     "connect": "3.6.6",
+    "element-ui": "^2.15.13",
     "html-webpack-plugin": "3.2.0",
     "lint-staged": "8.1.5",
     "mockjs": "1.0.1-beta3",

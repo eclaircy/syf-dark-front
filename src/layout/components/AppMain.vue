@@ -22,13 +22,17 @@ export default {
 }
 </script>
 
+<!-- TODO:在这里可以修改全局背景 -->
 <style lang="scss" scoped>
+
 .app-main {
   /* 50= navbar  50  */
   min-height: calc(100vh - 50px);
   width: 100%;
   position: relative;
   overflow: hidden;
+  background-color: #F8F9FE;  //TODO:app main全局背景颜色
+  
 }
 
 .fixed-header+.app-main {

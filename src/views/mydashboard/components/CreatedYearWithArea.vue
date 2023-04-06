@@ -22,7 +22,7 @@ export default {
         },
         height: {
             type: String,
-            default: '360px'
+            default: '440px'
         },
         autoResize: {
             type: Boolean,
