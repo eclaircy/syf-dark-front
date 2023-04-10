@@ -47,14 +47,19 @@ export default {
               target: `node-${Math.round(Math.random() * 90)}`,
             });
           }
-
-
+          //格式为{
+          //    id:1, date:"yyyymm"
+          //  }
+          console.log(data.nodes)
+          console.log(data.edges)
+          
           for (let i = 0; i < 100; i++) {
             timeBarData.push({
               date: `2020${i}`,
               value: Math.round(Math.random() * 300),
             });
           }
+          console.log(timeBarData)
 
           const timebar = new G6.TimeBar({
             x: 0,

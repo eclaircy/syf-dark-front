@@ -5,7 +5,7 @@
 
 <script>
 import echarts from 'echarts';
-import resize from '../../dashboard/admin/components/mixins/resize'
+import resize from '../../../dashboard/admin/components/mixins/resize'
 require('echarts/lib/component/dataset');
 require('echarts/lib/component/tooltip');
 require('echarts/lib/component/grid');

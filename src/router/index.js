@@ -101,18 +101,18 @@ export const constantRoutes = [
         }
       ]
     },
-    {
-      path: '/spider',
-      component: Layout,
-      children: [
-        {
-          path: 'index',
-          component: () => import('@/views/spider/index'),
-          name: 'spider',
-          meta: { title: '插件管理', icon: 'documentation', affix: true }
-        }
-      ]
-    },
+    // {
+    //   path: '/spider',
+    //   component: Layout,
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       component: () => import('@/views/spider/index'),
+    //       name: 'spider',
+    //       meta: { title: '插件管理', icon: 'documentation', affix: true }
+    //     }
+    //   ]
+    // },
 
   {
     path: '/malwaresites',
@@ -165,13 +165,7 @@ export const constantRoutes = [
         path: '/analyse/index',
         component: () => import('@/views/malware-group/analyse/index'),
         name: 'analyse1',
-        meta: { title: '团伙分析', icon: 'documentation', affix: true }
-      },
-      {
-        path: '/analyse/index',
-        component: () => import('@/views/malware-group/analyse/index'),
-        name: 'analyse2',
-        meta: { title: '团伙分析', icon: 'documentation', affix: true }
+        meta: { title: '团伙详情', icon: 'documentation', affix: true }
       },
     ]
   },

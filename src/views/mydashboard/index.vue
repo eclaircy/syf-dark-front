@@ -2,7 +2,7 @@
   <div class="dashboard-editor-container">
 
     <!-- <h4>TODO:
-      1、展示数值：（全部/恶意）网站数、ip数；   各种组件的使用数量
+      1、展示数值：（全部/恶意）网站数、ip数；公司？； 
       2、统计
       每年的新出现数量、累计总数量  
       使用年份
@@ -11,22 +11,20 @@
 
     <!-- <panel-group /> -->
     <el-row style="margin-top:25px;">
-      <MyPanelGroup/>
+      <PanelGroup />
     </el-row>
     
     <el-row gutter=20 style="">
       <el-col :span="16">
         <el-card class="el-card" style="height:410px" >
           <div class="card-title">整体变化趋势图</div>
-          <StackArea/>
-          <!-- <BarChart/> -->
+          <PanelStack/>
         </el-card>
         
       </el-col>
       <el-col :span="8">
         <el-card class="el-card" style="height:410px">
           <div class="card-title" style="margin-bottom:5px">占据比例</div>
-          <!-- <PercentBar/> -->
           <PieChart/>
         </el-card>
       </el-col>
@@ -36,8 +34,7 @@
       <el-col  :span="9">
         <el-card style="margin-bottom:5px;height:210px">
           <div class="card-title" >网站-地区分布柱状图
-            <!-- <RoseChart/> -->
-            <MyRose/>
+            <AreaRose/>
           </div>
         </el-card>
         <el-card style="height:210px"> 
@@ -60,22 +57,23 @@
       <el-col  :span="16">
         <el-card style="height:450px">
           <div class="card-title">网站建立时间变化图</div>
-          <SiteWithYear/>
+          <SiteYearGraph/>
         </el-card>
         
 
       </el-col>
       <el-col  :span="8">
         <el-card style="height:450px">
-          <div class="card-title">最新检测网站</div>
           <el-carousel height="430px">
             <el-carousel-item>
+            <div class="card-title">最新检测网站</div>  
             <NewSiteTable/>
             </el-carousel-item>
-            <el-carousel-item><NewPersonTable/></el-carousel-item>
+            <el-carousel-item>
+              <div class="card-title">最新相关人员/公司</div>
+              <NewPersonTable/>  
+            </el-carousel-item>
           </el-carousel>
-
-          <!-- TODO: -->
         </el-card>
       </el-col>    
     </el-row>
@@ -86,57 +84,74 @@
 </template>
 
 <script>
-import TransactionTable from '../dashboard/admin/components/TransactionTable'
-import MalwareSitesGraphOverview from './components/MalwareSitesGraphOverview'
-import PanelGroup from './components/PanelGroup'
-import CreatedYearWithArea from './components/CreatedYearWithArea'
-import ChinaMap1 from './components/ChinaMap1'
-import Zhu from './components/Zhu'
-import BarChart from './components/BarChart'
-import StackArea from './components/StackArea'
-import RoseChart from './components/RoseChart'
-import AreaMultiChart from "./components/AreaMultiChart"
+import PanelStack from './components/PanelStack'
 import NewSiteTable  from './components/NewSiteTable'
-import SiteWithYear from "./components/SiteWithYear"
-import Bullet from "./components/Bullet"
-import MyPanelGroup from './components/candidate/MyPanelGroup.vue'
-import PercentBar from './components/candidate/PercentBar.vue'
-import AreaBar from './components/candidate/AreaBar.vue'
-import PieChart from './components/candidate/PieChart.vue'
-import MyRose from './components/candidate/MyRose.vue'
-import WorldDrillMap from './components/candidate/WorldDrillMap.vue'
-import NewPersonTable from "./components/candidate/NewPersonTable.vue"
+import SiteYearGraph from "./components/SiteYearGraph"
+import PanelGroup from './components/PanelGroup.vue'
+import AreaBar from './components/AreaBar.vue'
+import PieChart from './components/PieChart.vue'
+import AreaRose from './components/AreaRose.vue'
+import WorldDrillMap from './components/WorldDrillMap.vue'
+import NewPersonTable from "./components/NewPersonTable.vue"
 
 export default {
   name: 'MyDash',
   components: {
-    TransactionTable,
-    MalwareSitesGraphOverview,
-    PanelGroup,
-    CreatedYearWithArea,
-    ChinaMap1,
-    Zhu,
-    BarChart,
-    StackArea,
-    RoseChart,
-    AreaMultiChart,
-    NewSiteTable,
-    SiteWithYear,
-    Bullet,
-    MyPanelGroup,
-    PercentBar,
-    AreaBar,
+    PanelGroup, 
+
+    PanelStack,
     PieChart,
-    MyRose,
+
     WorldDrillMap,
+    AreaBar,
+    AreaRose,
+
+    SiteYearGraph,
+    NewSiteTable,
     NewPersonTable
+  },
+  data() {
+    return {
+      
+
+    }
+  },
+  methods: {
+    // getPanelGroup(){
+    //   //获取总统计数量
+    //   this.axios({
+    //       url:"api/sites/statistic",
+    //       method:'get'
+    //   }).then(res=>{
+    //       console.log(res);
+    //       this.countGroup=res.data;
+    //   })
+    // },
+    getPanelStack(){
+
+    },
+    getPieChart(){
+
+    },
+    getWorldDrillMap(){
+
+    },
+    getArea(){
+
+    },
+    getSiteYearGraph(){
+
+    }
+
+  },
+  mounted(){
+    
   }
 }
 
 </script>
 
 <style  lang="scss" scoped>
-
 
 @media (max-width:1024px) {
   .chart-wrapper {

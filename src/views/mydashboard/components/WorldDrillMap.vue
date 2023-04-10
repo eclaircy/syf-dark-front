@@ -322,7 +322,7 @@ export default{
             // Set themes
             // https://www.amcharts.com/docs/v5/concepts/themes/
             root.setThemes([
-            am5themes_Animated.new(root)
+                am5themes_Animated.new(root)
             ]);
 
 
@@ -342,10 +342,11 @@ export default{
             }));
 
             worldSeries.mapPolygons.template.setAll({
-            tooltipText: "{name}",
-            interactive: true,
-            fill: am5.color(0xaaaaaa),
-            templateField: "polygonSettings"
+                tooltipText: "{name}",
+                interactive: true,
+                fill: am5.color(0xaaaaaa),
+                templateField: "polygonSettings",
+        
             });
 
             worldSeries.mapPolygons.template.states.create("hover", {
