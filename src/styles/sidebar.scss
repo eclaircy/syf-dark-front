@@ -66,6 +66,12 @@
       border: none;
       height: 100%;
       width: 100% !important;
+
+      // TODO:修改-自己加的
+        border-right-color: #80808017;
+        border-right-style: solid;
+        border-right-width: 0.4px;
+
     }
 
     // menu hover
@@ -91,9 +97,10 @@
     }
   }
 
+  // TODO:这里修改隐藏侧栏后的宽度
   .hideSidebar {
     .sidebar-container {
-      width: 54px !important;
+      width: 63px !important;
     }
 
     .main-container {

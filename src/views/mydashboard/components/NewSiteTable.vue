@@ -1,26 +1,28 @@
 <template>
 
   <el-table :data="tableData" border style="width: 100%" 
-    :header-cell-style="{background:'#f3e5f5',color:'#606266',borderColor:'#C0C0C0'}"
+    :header-cell-style="{background:'#f1f1f1',color:'#606266',borderColor:'#C0C0C0'}"
     :cell-style="{borderColor:'#C0C0C0'}"
   >
     <el-table-column
         prop="domain"
-        show-overflow-tooltip="true"
+        :show-overflow-tooltip="true"
         label="域名"
         >
     </el-table-column>
 
     <el-table-column
         prop="site_title"
-        show-overflow-tooltip="true"
+        :show-overflow-tooltip="true"
         label="网站标题">
     </el-table-column>
 
     <el-table-column prop="is_malicious" label="类型">
         <template slot-scope="{row}">
-          <el-tag v-if="row.is_malicious===true" type="danger">恶意网站</el-tag>
-          <el-tag v-else  type="success">良性网站</el-tag>
+          <el-tag v-if="row.id % 2==1" type="danger">恶意网站</el-tag>
+          <el-tag v-else  type="success">正常网站</el-tag>
+          <!-- <el-tag v-if="row.is_malicious===true" type="danger">恶意网站</el-tag>
+          <el-tag v-else  type="success">正常网站</el-tag> -->
         </template>
     </el-table-column>
   </el-table>
@@ -69,6 +71,6 @@ export default {
 
 <style lang="css" scoped>
 .el-table__header {
-  background-color: #f3e5f5 !important;
+  background-color: #f1f1f1 !important;
 }
 </style>

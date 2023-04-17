@@ -89,6 +89,12 @@ export default {
   position: relative;
   background: #fff;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  //TODO:自己改的
+    border-bottom-color: #80808017;
+    border-bottom-style: solid;
+    border-bottom-width: 0.4px;
+
+
 
   .hamburger-container {
     line-height: 46px;

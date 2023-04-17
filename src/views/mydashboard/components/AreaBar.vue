@@ -1,7 +1,7 @@
 <template>
-    <div id="area-bar" style="height:170px"></div>
+    <div id="area-bar" style="height:350px"></div>
 </template>
-
+<!-- 170px -->
 <script>
 import { Column } from '@antv/g2plot';
 export default {
@@ -112,33 +112,38 @@ export default {
             // fetch('https://gw.alipayobjects.com/os/antfincdn/8elHX%26irfq/stack-column-data.json')
             // .then((data) => data.json())
             // .then((data) => {
+                // var data = data.slice(0,15)
                 const stackedColumnPlot = new Column('area-bar', {
-                data,
-                // height:200,
-                autoFit:true,
-                isStack: true,
-                xField: 'area',
-                yField: 'value',
-                seriesField: 'type',
-                //TODO:设置文字倾斜
-                xAxis: {
+                    data,
+                    // height:200,
+                    autoFit:true,
+                    isStack: true,
+                    xField: 'area',
+                    yField: 'value',
+                    seriesField: 'type',
+                    //TODO:设置文字倾斜
+                    xAxis: {
+                        label: {
+                        autoHide: true,
+                        autoRotate: true,
+                        size:12
+                        // rotate:30,
+                        },
+                    },
                     label: {
-                    autoHide: true,
-                    autoRotate: true,
-                    // rotate:30,
+                        // 可手动配置 label 数据标签位置
+                        position: 'middle', // 'top', 'bottom', 'middle'
+                        layout: [{ type: 'interval-hide-overlap' }], // 隐藏重叠文字
                     },
-                },
-                label: {
-                    // 可手动配置 label 数据标签位置
-                    position: 'middle', // 'top', 'bottom', 'middle'
-                    
-                },
-                interactions: [{ type: 'active-region', enable: false }],
-                connectedArea: {
-                    style: (oldStyle, element) => {
-                    return { fill: 'rgba(0,0,0,0.25)', stroke: oldStyle.fill, lineWidth: 0.5 };
+                    legend:{
+                        position:'top'
                     },
-                },
+                    interactions: [{ type: 'active-region', enable: false }],
+                    connectedArea: {
+                        style: (oldStyle, element) => {
+                        return { fill: 'rgba(0,0,0,0.25)', stroke: oldStyle.fill, lineWidth: 0.5 };
+                        },
+                    },
                 });
 
                 stackedColumnPlot.render();

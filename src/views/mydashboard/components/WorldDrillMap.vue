@@ -8,6 +8,7 @@
 
 <!-- Styles -->
 <style>
+/**
     #chartdiv {
         width: 749px;
         height: 400px;
@@ -16,6 +17,17 @@
 
     #chartdiv2 {
         width: 740px;
+        height: 390px;
+    }
+**/
+    #chartdiv {
+        width: 640px;
+        height: 390px;
+        overflow: hidden;
+    }
+
+    #chartdiv2 {
+        width:640px;
         height: 390px;
     }
 </style>
@@ -340,6 +352,8 @@ export default{
             geoJSON: am5geodata_worldLow,
             exclude: ["AQ"]
             }));
+            // chart.logo.disabled = true; // 隐藏 AmCharts 的 Logo
+            // chart.width = 400;
 
             worldSeries.mapPolygons.template.setAll({
                 tooltipText: "{name}",
@@ -569,98 +583,189 @@ export default{
                 });
 
                 var cities = [
-                {
-                    title: "Brussels",
-                    latitude: 50.8371,
-                    longitude: 4.3676
-                },
-                {
-                    title: "Copenhagen",
-                    latitude: 55.6763,
-                    longitude: 12.5681
-                },
-                {
-                    title: "Paris",
-                    latitude: 48.8567,
-                    longitude: 2.351
-                },
-                {
-                    title: "Reykjavik",
-                    latitude: 64.1353,
-                    longitude: -21.8952
-                },
-                {
-                    title: "Moscow",
-                    latitude: 55.7558,
-                    longitude: 37.6176
-                },
-                {
-                    title: "Madrid",
-                    latitude: 40.4167,
-                    longitude: -3.7033
-                },
-                {
-                    title: "London",
-                    latitude: 51.5002,
-                    longitude: -0.1262,
-                    url: "http://www.google.co.uk"
-                },
-                {
-                    title: "Peking",
-                    latitude: 39.9056,
-                    longitude: 116.3958
-                },
-                {
-                    title: "New Delhi",
-                    latitude: 28.6353,
-                    longitude: 77.225
-                },
-                {
-                    title: "Tokyo",
-                    latitude: 35.6785,
-                    longitude: 139.6823,
-                    url: "http://www.google.co.jp"
-                },
-                {
-                    title: "Ankara",
-                    latitude: 39.9439,
-                    longitude: 32.856
-                },
-                {
-                    title: "Buenos Aires",
-                    latitude: -34.6118,
-                    longitude: -58.4173
-                },
-                {
-                    title: "Brasilia",
-                    latitude: -15.7801,
-                    longitude: -47.9292
-                },
-                {
-                    title: "Ottawa",
-                    latitude: 45.4235,
-                    longitude: -75.6979
-                },
-                {
-                    title: "Washington",
-                    latitude: 38.8921,
-                    longitude: -77.0241
-                },
-                {
-                    title: "Kinshasa",
-                    latitude: -4.3369,
-                    longitude: 15.3271
-                },
-                {
-                    title: "Cairo",
-                    latitude: 30.0571,
-                    longitude: 31.2272
-                },
-                {
-                    title: "Pretoria",
-                    latitude: -25.7463,
-                    longitude: 28.1876
-                }
+                    {
+                        title: "上海",
+                        latitude: 31.2304,
+                        longitude: 121.4737
+                    },                
+                    {
+                        title: "北京",
+                        latitude: 39.9056,
+                        longitude: 116.3958
+                    },
+                    {
+                        title: "广东",
+                        latitude: 23.1291,
+                        longitude: 113.2644
+                    },
+                    {
+                        title: "重庆",
+                        latitude: 29.4316,
+                        longitude: 106.9123
+                    },
+                    {
+                        title: "Paris",
+                        latitude: 48.8567,
+                        longitude: 2.351
+                    },
+                    {
+                        title: "吉林",
+                        latitude: 43.7952,
+                        longitude: 125.3235
+                    },
+                    {
+                        title: "浙江",
+                        latitude: 30.26,
+                        longitude: 120.2194
+                    },
+                    {
+                        title: "新疆",
+                        latitude: 43.7928,
+                        longitude: 87.6177
+                    },                    
+                    {
+                        title: "四川",
+                        latitude: 30.5728, 
+                        longitude: 104.0668
+                    },
+                    {
+                        title: "台湾",
+                        latitude: 23.6978, 
+                        longitude: 120.9605
+                    },
+                    {
+                        title: "福建",
+                        latitude: 26.0789, 
+                        longitude:119.2965
+                    },                    {
+                        title: "湖北",
+                        latitude: 30.8614, 
+                        longitude: 114.1894
+                    },                    
+                    {
+                        title: "天津",
+                        latitude: 39.0851, 
+                        longitude: 117.1994
+                    },
+                    {
+                        title: "湖南",
+                        latitude: 28.2323,
+                        longitude:  112.9388
+                    },
+                    {
+                        title: "山东",
+                        latitude: 36.3427, 
+                        longitude: 118.1498
+                    },
+                    {
+                        title: "河南",
+                        latitude: 34.1572, 
+                        longitude: 113.4668
+                    },
+                    {
+                        title: "江西",
+                        latitude: 28.6743, 
+                        longitude: 115.9101
+                    },
+                    {
+                        title: "江苏",
+                        latitude: 32.0603, 
+                        longitude: 118.7969
+                    },
+                    {
+                        title: "河北",
+                        latitude: 38.0428, 
+                        longitude: 114.5149
+                    },
+                    {
+                        title: "江苏",
+                        latitude: 32.0603, 
+                        longitude: 118.7969
+                    },
+                    {
+                        title: "江苏",
+                        latitude: 32.0603, 
+                        longitude: 118.7969
+                    },
+
+
+                    {
+                        title: "华盛顿",
+                        latitude: 38.8921,
+                        longitude: -77.0241
+                    },
+                    {
+                        title: "加利福尼亚州",
+                        latitude: 36.7783,
+                        longitude: -119.4179
+                    },
+                    {
+                        title: "德克萨斯州",
+                        latitude: 31.9686,
+                        longitude:  -99.9018
+                    },
+                    {
+                        title: "洛杉矶",
+                        latitude:  34.0522,
+                        longitude: -118.2437
+                    },
+                    {
+                        title: "凤凰城",
+                        latitude:  33.4484,
+                        longitude: -112.0740
+                    },
+
+                    {
+                        title: "新南威尔士",
+                        latitude: -33.8688,
+                        longitude:151.2093
+                    },
+
+
+
+
+                    {
+                        title: "新加坡",
+                        latitude: 	1.3521,
+                        longitude: 103.8198
+                    },
+                    {
+                        title: "London",
+                        latitude: 51.5002,
+                        longitude: -0.1262,
+                        url: "http://www.google.co.uk"
+                    },
+
+                    {
+                        title: "大阪",
+                        latitude: 34.6870,
+                        longitude: 135.5250
+                    },
+                    {
+                        title: "Tokyo",
+                        latitude: 35.6785,
+                        longitude: 139.6823,
+                        url: "http://www.google.co.jp"
+                    },
+                    {
+                        title: "阿根廷",
+                        latitude: 21.78,
+                        longitude: 53.5914
+                    },
+                    {
+                        title: "首尔",
+                        latitude: 37.5665,
+                        longitude: 126.9780
+                    },
+
+
+                    {
+                        title: "莫斯科",
+                        latitude: 37.6173,
+                        longitude:  55.7558
+                    },
+     
+
                 ];
 
                 for (var i = 0; i < cities.length; i++) {

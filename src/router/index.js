@@ -89,27 +89,16 @@ export const constantRoutes = [
       }
     ]
   },
-  {
-      path: '/spider',
-      component: Layout,
-      children: [
-        {
-          path: 'index',
-          component: () => import('@/views/spider/index'),
-          name: 'spider',
-          meta: { title: '爬虫管理', icon: 'documentation', affix: true }
-        }
-      ]
-    },
+
     // {
-    //   path: '/spider',
+    //   path: '/black',
     //   component: Layout,
     //   children: [
     //     {
     //       path: 'index',
-    //       component: () => import('@/views/spider/index'),
-    //       name: 'spider',
-    //       meta: { title: '插件管理', icon: 'documentation', affix: true }
+    //       component: () => import('@/views/blacklist/index'),
+    //       name: 'black',
+    //       meta: { title: '黑名单管理', icon: 'documentation', affix: true }
     //     }
     //   ]
     // },
@@ -128,20 +117,40 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/malwaresites/index'),
         name: 'Malwaresites',
-        meta: { title: '网站查询', icon: 'documentation', affix: true }
+        meta: { title: '旧网站查询', icon: 'documentation', affix: true },
+        hidden: true
       },
       {
         path: '/detect/index',
         component: () => import('@/views/malwaresites/detect/index'),
         name: 'detect',
-        meta: { title: '网站检测', icon: 'documentation', affix: true },
+        meta: { title: '实时检测', icon: 'documentation', affix: true },
       },
       {
         path: '/detail/index',
         component: () => import('@/views/malwaresites/detail/index'),
         name: 'detail',
         meta: { title: '详情页', icon: 'documentation', affix: true },
+        hidden: true
+      },
+      {
+        path: '/search/index',
+        component: () => import('@/views/malwaresites/search/index'),
+        name: 'search',
+        meta: { title: '网站查询', icon: 'documentation', affix: true },
         // hidden: true
+      },
+      {
+        path: '/black',
+        // component: Layout,
+        // children: [
+          // {
+          //   path: 'index',
+            component: () => import('@/views/blacklist/index'),
+            name: 'black',
+            meta: { title: '黑名单管理', icon: 'documentation', affix: true }
+          // }
+        // ]
       },
 
     ]
@@ -159,7 +168,8 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/malware-group/index'),
         name: 'MalwareGan',
-        meta: { title: '团伙分析总览', icon: 'documentation', affix: true }
+        meta: { title: '图谱总览', icon: 'documentation', affix: true }
+        // , hidden: true
       },
       {
         path: '/analyse/index',
@@ -169,7 +179,32 @@ export const constantRoutes = [
       },
     ]
   },
-  
+  {
+    path: '/spider',
+    component: Layout,
+    // hidden:true,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/spider/ComplexTable'),
+        name: 'spider',
+        meta: { title: '爬虫管理', icon: 'documentation', affix: true }
+      }
+    ]
+  },
+
+  {
+    path: '/complaint',
+    component: Layout,
+    children: [
+      {
+        path: 'index',
+        component: () => import('@/views/malware-complaint/index'),
+        name: 'complaint',
+        meta: { title: '用户举报', icon: 'documentation', affix: true }
+      }
+    ]
+  },
   // ////////////////////////////////////////////////////////////////////////////////////
         // ////////////////////////////////////////////////////////////////////////////////////
         // ////////////////////////////////////////////////////////////////////////////////////
@@ -184,7 +219,7 @@ export const constantRoutes = [
         path: 'dashboard1',
         component: () => import('@/views/dashboard/index'),
         name: 'Dashboard1',
-        meta: { title: 'Dashboard1', icon: 'dashboard', affix: true }
+        meta: { title: 'Dashboard1', icon: 'dashboard', affix: true }, hidden: true
       }
     ]
   },
@@ -196,7 +231,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/documentation/index'),
         name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }
+        meta: { title: 'Documentation', icon: 'documentation', affix: true }, hidden: true
       }
     ]
   },
@@ -209,7 +244,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/guide/index'),
         name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }
+        meta: { title: 'Guide', icon: 'guide', noCache: true }, hidden: true
       }
     ]
   },
@@ -223,7 +258,7 @@ export const constantRoutes = [
         path: 'index',
         component: () => import('@/views/profile/index'),
         name: 'Profile',
-        meta: { title: 'Profile', icon: 'user', noCache: true }
+        meta: { title: 'Profile', icon: 'user', noCache: true }, hidden: true
       }
     ]
   }
@@ -239,7 +274,7 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/permission/page',
     alwaysShow: true, // will always show the root menu
-    name: 'Permission',
+    name: 'Permission',hidden: true,
     meta: {
       title: 'Permission',
       icon: 'lock',
@@ -251,14 +286,14 @@ export const asyncRoutes = [
         component: () => import('@/views/permission/page'),
         name: 'PagePermission',
         meta: {
-          title: 'Page Permission',
+          title: 'Page Permission',hidden: true,
           roles: ['admin'] // or you can only set roles in sub nav
         }
       },
       {
         path: 'directive',
         component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',
+        name: 'DirectivePermission',hidden: true,
         meta: {
           title: 'Directive Permission'
           // if do not set roles, means: this page does not require permission
@@ -267,7 +302,7 @@ export const asyncRoutes = [
       {
         path: 'role',
         component: () => import('@/views/permission/role'),
-        name: 'RolePermission',
+        name: 'RolePermission',hidden: true,
         meta: {
           title: 'Role Permission',
           roles: ['admin']
@@ -284,7 +319,7 @@ export const asyncRoutes = [
         path: 'index',
         component: () => import('@/views/icons/index'),
         name: 'Icons',
-        meta: { title: 'Icons', icon: 'icon', noCache: true }
+        meta: { title: 'Icons', icon: 'icon', noCache: true },hidden: true,
       }
     ]
   },
@@ -299,7 +334,7 @@ export const asyncRoutes = [
     path: '/example',
     component: Layout,
     redirect: '/example/list',
-    name: 'Example',
+    name: 'Example',hidden: true,
     meta: {
       title: 'Example',
       icon: 'el-icon-s-help'
@@ -329,7 +364,7 @@ export const asyncRoutes = [
 
   {
     path: '/tab',
-    component: Layout,
+    component: Layout,hidden: true,
     children: [
       {
         path: 'index',
@@ -342,7 +377,7 @@ export const asyncRoutes = [
 
   {
     path: '/error',
-    component: Layout,
+    component: Layout,hidden: true,
     redirect: 'noRedirect',
     name: 'ErrorPages',
     meta: {
@@ -366,7 +401,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/error-log',
+    path: '/error-log',hidden: true,
     component: Layout,
     children: [
       {
@@ -379,7 +414,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/excel',
+    path: '/excel',hidden: true,
     component: Layout,
     redirect: '/excel/export-excel',
     name: 'Excel',
@@ -416,7 +451,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/zip',
+    path: '/zip',hidden: true,
     component: Layout,
     redirect: '/zip/download',
     alwaysShow: true,
@@ -433,7 +468,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/pdf',
+    path: '/pdf',hidden: true,
     component: Layout,
     redirect: '/pdf/index',
     children: [
@@ -446,13 +481,13 @@ export const asyncRoutes = [
     ]
   },
   {
-    path: '/pdf/download',
+    path: '/pdf/download',hidden: true,
     component: () => import('@/views/pdf/download'),
     hidden: true
   },
 
   {
-    path: '/theme',
+    path: '/theme',hidden: true,
     component: Layout,
     children: [
       {
@@ -465,7 +500,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: '/clipboard',
+    path: '/clipboard',hidden: true,
     component: Layout,
     children: [
       {
@@ -478,7 +513,7 @@ export const asyncRoutes = [
   },
 
   {
-    path: 'external-link',
+    path: 'external-link',hidden: true,
     component: Layout,
     children: [
       {

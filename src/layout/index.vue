@@ -7,13 +7,19 @@
         <navbar />
         <tags-view v-if="needTagsView" />
       </div>
-      <!-- <el-scrollbar  style="height: 100%;" class="scrollbar-for"> -->
+
+      <!-- <div style="height:100%">
+        <el-scrollbar style="height: 100%;" class="scrollbar-for"  wrap-style="overflow-x:hidden;">
+          <app-main />
+       </el-scrollbar>
+      </div> -->
+
          <app-main />
-      <!-- </el-scrollbar> -->
-     
+
+<!--      
       <right-panel v-if="showSettings">
         <settings />
-      </right-panel>
+      </right-panel> -->
     </div>
   </div>
 </template>

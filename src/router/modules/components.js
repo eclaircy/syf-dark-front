@@ -6,7 +6,7 @@ const componentsRouter = {
   path: '/components',
   component: Layout,
   redirect: 'noRedirect',
-  name: 'ComponentDemo',
+  name: 'ComponentDemo',hidden: true,
   meta: {
     title: 'Components',
     icon: 'component'

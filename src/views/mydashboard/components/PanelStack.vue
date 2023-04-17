@@ -27,27 +27,16 @@ export default {
                 var data = res.data;
                 const area = new Area('stack-area-container', {
                 data,
+                smooth:true,
                 autoFit:true,
                 xField: 'year', //'date'
                 yField: 'value', //'value'
                 seriesField: 'type', //'country'
                 height:350,
-                // TODO:配置折线趋势填充 这里是自己加的，不确定能不能兼容
-                // area: {
-                //     style: {
-                //     fillOpacity: 0.15,
-                //     },
-                // },
-                // animation: {
-                //     appear: {
-                //     animation: 'wave-in',
-                //     duration: 3000,
-                //     },
-                // },
-                /////////////////////////////
+                color:["#945FB9","#F6BD16","#5B8FF9","#5AD8A6"],
                 slider: {
-                    start: 0.1,
-                    end: 0.9,
+                    start: 0.5,
+                    end: 1,
                 },
                 });
                 area.render();
@@ -92,8 +81,8 @@ export default {
         }
     },
     mounted(){
-        // this.showStackArea()
-        this.showSampleStackArea()
+        this.showStackArea()
+        // this.showSampleStackArea()
     }
 }
 </script>

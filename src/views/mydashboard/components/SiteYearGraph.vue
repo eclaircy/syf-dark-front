@@ -59,6 +59,7 @@ export default {
               value: Math.round(Math.random() * 300),
             });
           }
+          console.log("time bar data:")
           console.log(timeBarData)
 
           const timebar = new G6.TimeBar({

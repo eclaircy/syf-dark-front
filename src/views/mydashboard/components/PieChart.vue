@@ -14,17 +14,8 @@
 <script>
 import { Pie, G2 } from '@antv/g2plot';
 export default {
-    // props:['countGroup',],
     data() {
         return {
-            // siteData:[
-            //     { type: '恶意网站', value: 140  },
-            //     { type: '良性网站', value: 120 },
-            // ],
-            ipData:[
-                { type: '恶意IP', value: 340 },
-                { type: '良性IP', value: 500 },
-            ],
             countGroup:'',
         }
     },
@@ -39,10 +30,14 @@ export default {
                 this.countGroup=res.data;
                 var siteData=[
                     { type: '恶意网站', value: this.countGroup.malSiteCount  },
-                    { type: '良性网站', value: this.countGroup.malSiteCount  },
+                    { type: '正常网站', value: this.countGroup.goodSiteCount  },
+                ]
+                var ipData = [
+                    { type: '恶意IP', value: this.countGroup.malIpCount  },
+                    { type: '正常IP', value: this.countGroup.goodIpCount  },
                 ]
                 this.showPie("site-pie",siteData)
-                this.showPie("ip-pie",this.ipData)
+                this.showPie("ip-pie",ipData)
             })
         },
         showPie(contanierId,data){
@@ -105,17 +100,6 @@ export default {
     created(){
         this.getPanelGroup()
     },
-    // watch:{
-    //     countGroup:function(val){
-    //         console.log(val)
-    //         var siteData = [
-    //             { type: '恶意网站', value: this.countGroup.malSiteCount },
-    //             { type: '良性网站', value: this.countGroup.goodSiteCount },
-    //         ]
-    //      this.showPie("site-pie",siteData)
-    //     }
-    // }
-   
 }
 </script>
 

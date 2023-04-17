@@ -14,11 +14,12 @@
       <PanelGroup />
     </el-row>
     
-    <el-row gutter=20 style="">
+    <el-row :gutter=20 style="">
       <el-col :span="16">
         <el-card class="el-card" style="height:410px" >
           <div class="card-title">整体变化趋势图</div>
           <PanelStack/>
+          <!-- <PanelLine/> -->
         </el-card>
         
       </el-col>
@@ -30,21 +31,21 @@
       </el-col>
     </el-row>
 
-    <el-row gutter=10>
-      <el-col  :span="9">
-        <el-card style="margin-bottom:5px;height:210px">
+    <el-row :gutter=10>
+      <el-col  :span="11">
+        <!-- <el-card style="margin-bottom:5px;height:200px">
           <div class="card-title" >网站-地区分布柱状图
             <AreaRose/>
           </div>
-        </el-card>
-        <el-card style="height:210px"> 
+        </el-card> -->
+        <el-card style="height:420px"> 
             <div class="card-title">网站-地区分布柱状图
             <AreaBar/>
         </div>
         </el-card>
       </el-col>
-
-      <el-col  :span="15">
+      <!-- 15:9 -->
+      <el-col  :span="13">
         <!-- 中国地图+散点：展示恶意网站/ip分布 -->
         <el-card style="height:420px;overflow:hidden">
           <WorldDrillMap/>
@@ -53,7 +54,7 @@
       </el-col>
     </el-row>
 
-    <el-row gutter=20>
+    <el-row :gutter=20>
       <el-col  :span="16">
         <el-card style="height:450px">
           <div class="card-title">网站建立时间变化图</div>
@@ -69,10 +70,10 @@
             <div class="card-title">最新检测网站</div>  
             <NewSiteTable/>
             </el-carousel-item>
-            <el-carousel-item>
+            <!-- <el-carousel-item>
               <div class="card-title">最新相关人员/公司</div>
               <NewPersonTable/>  
-            </el-carousel-item>
+            </el-carousel-item> -->
           </el-carousel>
         </el-card>
       </el-col>    
@@ -93,6 +94,7 @@ import PieChart from './components/PieChart.vue'
 import AreaRose from './components/AreaRose.vue'
 import WorldDrillMap from './components/WorldDrillMap.vue'
 import NewPersonTable from "./components/NewPersonTable.vue"
+import PanelLine from "./components/PanelLine.vue"
 
 export default {
   name: 'MyDash',
@@ -100,6 +102,7 @@ export default {
     PanelGroup, 
 
     PanelStack,
+    PanelLine,
     PieChart,
 
     WorldDrillMap,

@@ -1,7 +1,10 @@
 <template>
-  <el-scrollbar ref="scrollContainer" :vertical="false" class="scroll-container" @wheel.native.prevent="handleScroll">
-    <slot />
-  </el-scrollbar>
+
+      <el-scrollbar ref="scrollContainer" :vertical="false" class="scroll-container" @wheel.native.prevent="handleScroll">
+      <slot />
+
+      </el-scrollbar>
+
 </template>
 
 <script>
@@ -82,6 +85,7 @@ export default {
   position: relative;
   overflow: hidden;
   width: 100%;
+  
   ::v-deep {
     .el-scrollbar__bar {
       bottom: 0px;
@@ -89,6 +93,14 @@ export default {
     .el-scrollbar__wrap {
       height: 49px;
     }
+
+    .el-scrollbar__bar.is-horizontal {
+      /* TODO:测试，添加下边框阴影 */
+      box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 0px 6px 0 rgb(206 206 238 / 54%) !important;
+    }
+    
   }
+  
 }
+
 </style>

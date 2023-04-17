@@ -10,12 +10,12 @@ export default {
         showRose(){
             
             const data = [
-            { type: '武汉', value: 27 },
-            { type: '上海', value: 25 },
-            { type: '北京', value: 18 },
-            { type: '分类四', value: 15 },
-            { type: '分类五', value: 10 },
-            { type: '其他', value: 5 },
+            { type: '中国', value: 726 },
+            { type: '美国', value: 46 },
+            { type: '日本', value: 6 },
+            { type: '韩国', value: 5 },
+            { type: '新加坡', value: 3 },
+            // { type: '其他', value: 5 },
             ];
 
             const rosePlot = new Rose('rose-container', {
