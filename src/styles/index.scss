@@ -12,10 +12,14 @@ body {
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
 
+
+  // filter: invert(1) hue-rotate(180deg);
+
   // TODO:修改这里，改变全局字体颜色? color: white;
   // color: white;
   // background-color: "#3A3F41"；
 }
+
 
 label {
   font-weight: 700;
