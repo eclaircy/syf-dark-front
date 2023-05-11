@@ -46,7 +46,11 @@
       </el-tooltip>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-
+      <!-- filter:invert(1) hue-rotate(180deg) -->
+      <ParticleEffectButton 
+          :visible.sync="btnOps.visible" :animating.sync="btnOps.animating" :options="btnOps" cls="btn-cls" style="">
+        Login
+      </ParticleEffectButton>
       <div style="position:relative">
         <!-- <div class="tips">
           <span>Username : admin</span>
@@ -76,10 +80,11 @@
 <script>
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
+import ParticleEffectButton from "vue-particle-effect-buttons"
 
 export default {
   name: 'Login',
-  components: { SocialSign },
+  components: { SocialSign,ParticleEffectButton },
   data() {
     const validateUsername = (rule, value, callback) => {
       if (!validUsername(value)) {
@@ -109,7 +114,29 @@ export default {
       loading: false,
       showDialog: false,
       redirect: undefined,
-      otherQuery: {}
+      otherQuery: {},
+      btnOps:   
+      // {
+      //   style: "stroke",
+      //   color: "#1b81ea !important",
+      //   direction: "bottom",
+      //   duration: 1200,
+      //   easing: "easeOutSine",
+      //   speed: 0.7,
+      //   oscillationCoefficient: 5,
+      //   label: "Register"
+      // },
+      {
+            type: "triangle",
+            easing: "easeOutQuart",
+            size: 6,
+            particlesAmountCoefficient: 4,
+            oscillationCoefficient: 2,
+            color: function() {
+                return Math.random() < 0.5 ? "#000000" : "#ffffff";
+            },
+            label: "Upload"
+        },
     }
   },
   watch: {
@@ -158,7 +185,7 @@ export default {
           this.loading = true
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/', query: this.otherQuery })
+              this.$router.push({ path: this.redirect || '/dashboard', query: this.otherQuery })
               this.loading = false
             })
             .catch(() => {
@@ -320,5 +347,14 @@ $light_gray:#eee;
       display: none;
     }
   }
+}
+
+</style>
+<style scoped>
+/deep/.vue-particle-effect-button .particles-button {
+  background: #f1f1f4;
+  width:400px;
+  height:40px;
+  color: #fff;
 }
 </style>

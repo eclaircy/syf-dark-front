@@ -29,6 +29,29 @@ export default {
           const nodeSize = 20;
           const timeBarHeight = 140;  //时间轴高度
           const timeBarData = [];
+          const canvasBackgroundColor = '#363b40';
+          container.style.backgroundColor = canvasBackgroundColor;
+          const darkBackColor = 'rgb(43, 47, 51)'; //TODO:这里修改节点的背景颜色 原本rgb(43, 47, 51)
+          const disableColor = '#777';
+          const theme = 'dark'; //原本为dark  可选：dark、default
+          const subjectColors = [
+            '#5F95FF', // blue
+            '#61DDAA',
+            '#65789B',
+            '#F6BD16',
+            '#7262FD',
+            '#78D3F8',
+            '#9661BC',
+            '#F6903D',
+            '#008685',
+            '#F08BB4',
+          ];
+          const colorSets = G6.Util.getColorSetsBySubjectColors(
+              subjectColors,
+              darkBackColor,
+              theme,
+              disableColor,
+          );
 
           const data = {
             nodes: [],
@@ -104,7 +127,7 @@ export default {
               node.y = (node.y - miny) * scaley + constrainBox.y;
             });
           };
-
+          const realEdgeOpacity= 0.2;
           const graph = new G6.Graph({
             container: 'site-year-container',
             width,
@@ -118,16 +141,19 @@ export default {
             },
             defaultNode: {
               size: nodeSize,
-              type: 'circle',
               style: {
-                fill: '#FEF8E8', 
-                stroke: '#F6BD16',
+                fill: colorSets[0].mainFill || colorSets[0].mainFill || '#2B384E',
+                opacity: 0.9,
               },
+              
             },
             defaultEdge:{
-              style:{
-                stroke:"#F5EFF8",
-              }
+              style: {
+                stroke: '#acaeaf',
+                realEdgeStroke: '#acaeaf', //'#f00',
+                realEdgeOpacity,
+                strokeOpacity: realEdgeOpacity,
+              },
             },
             modes: {
               default: ['drag-node','drag-canvas', 'zoom-canvas'],  //zoom用于缩放画布

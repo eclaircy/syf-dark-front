@@ -9,7 +9,6 @@
       TODO:https://g2plot.antv.antgroup.com/zh/examples/dynamic-plots/animation/#animation-column 柱状图动画、颜色
     </h4> -->
 
-    <!-- <panel-group /> -->
     <el-row style="margin-top:25px;">
       <PanelGroup />
     </el-row>
@@ -70,16 +69,13 @@
             <div class="card-title">最新检测网站</div>  
             <NewSiteTable/>
             </el-carousel-item>
-            <!-- <el-carousel-item>
-              <div class="card-title">最新相关人员/公司</div>
-              <NewPersonTable/>  
-            </el-carousel-item> -->
+
           </el-carousel>
         </el-card>
       </el-col>    
     </el-row>
 
-
+    <!-- <MonthPie/> -->
     
   </div>
 </template>
@@ -93,8 +89,8 @@ import AreaBar from './components/AreaBar.vue'
 import PieChart from './components/PieChart.vue'
 import AreaRose from './components/AreaRose.vue'
 import WorldDrillMap from './components/WorldDrillMap.vue'
-import NewPersonTable from "./components/NewPersonTable.vue"
 import PanelLine from "./components/PanelLine.vue"
+import MonthPie from './components/MonthPie.vue'
 
 export default {
   name: 'MyDash',
@@ -111,7 +107,7 @@ export default {
 
     SiteYearGraph,
     NewSiteTable,
-    NewPersonTable
+    MonthPie
   },
   data() {
     return {
@@ -164,7 +160,6 @@ export default {
 
 .dashboard-editor-container {
   padding: 24px;
-  background-color: #F8F9FE; 
   position: relative;
 }
 
@@ -180,9 +175,10 @@ export default {
 .card-title{
   font-weight: bold;
   font-size: 16px;
-  color: #303133;
+  color: #c2c2c2;
   margin-bottom: 20px;
 }
+
 </style>
 <!-- #F8F9FE -->
 <!-- 

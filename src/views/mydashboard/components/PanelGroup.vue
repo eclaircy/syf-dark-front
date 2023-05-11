@@ -121,9 +121,11 @@ export default {
         border-radius: 14px;
     }
     .container{
-        background: white;
+        background: #343A40;
+        
         width: 283px;
-        box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);
+        height: 133.4px;
+        /**box-shadow: 0 2px 6px 0 rgb(218 218 253 / 65%), 0 2px 6px 0 rgb(206 206 238 / 54%);**/
         border-color: rgba(0, 0, 0, .05);
     }
 
@@ -131,7 +133,7 @@ export default {
     .card-panel-text {
         font-weight: bold;
         font-size: 16px;
-        color: rgba(0, 0, 0, 0.45);
+        color: #c2c2c2;
         margin-bottom: 12px;
       }
       
@@ -139,7 +141,7 @@ export default {
         float: left;
         font-weight: bold;
         font-size: 20px;
-        color:#666666
+        color:#c2c2c2
       }
 
       .increase-text{

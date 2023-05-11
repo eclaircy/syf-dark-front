@@ -87,7 +87,7 @@ export default {
   height: 50px;
   overflow: hidden;
   position: relative;
-  background: #fff;
+  background: #343A3F;
   box-shadow: 0 1px 4px rgba(0,21,41,.08);
   //TODO:自己改的
     border-bottom-color: #80808017;

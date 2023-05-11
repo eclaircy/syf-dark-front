@@ -1,5 +1,9 @@
 <template>
-    <div class="app-container">
+    <div class="app-container" style="height:770px;">
+      <el-row>
+        <el-card>我的任务：8个，已完成，未完成</el-card>
+      </el-row>
+
       <div class="filter-container">
         <el-input v-model="listQuery.title" placeholder="任务标题" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />   
         <el-select v-model="listQuery.status" placeholder="任务状态" clearable class="filter-item" style="width: 150px">
@@ -9,26 +13,17 @@
           <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
         </el-select>
 
-        <!-- <el-select v-model="listQuery.sort" style="width: 140px" class="filter-item" @change="handleFilter">
-          <el-option v-for="item in sortOptions" :key="item.key" :label="item.label" :value="item.key" />
-        </el-select> -->
-
         <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
           搜索
         </el-button>
         <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">
-          新增爬虫任务
+          新增检测任务
         </el-button>
         <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
           导出
         </el-button>
-
-
-        <!-- <el-checkbox v-model="showReviewer" class="filter-item" style="margin-left:15px;" @change="tableKey=tableKey+1">
-          reviewer
-        </el-checkbox> -->
       </div>
-  
+
       <el-table
         :key="tableKey"
         v-loading="listLoading"
@@ -46,36 +41,21 @@
         </el-table-column>
         <el-table-column label="日期" width="150px" align="center" >
           <template slot-scope="{row}">
-            <span>{{ row.timestamp | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
+            <span>{{ row.date | parseTime('{y}-{m}-{d} {h}:{i}') }}</span>
           </template>
         </el-table-column>
-        <el-table-column label="任务标题" min-width="130px" align="center" >
+        <el-table-column label="任务标题" min-width="110px" align="center" >
           <template slot-scope="{row}">
-            <span class="link-type" @click="handleUpdate(row)">{{ row.title }}</span>
-            <!-- <el-tag>{{ row.type | typeFilter }}</el-tag> -->
+            <span class="link-type" @click="handleUpdate(row)" style="color:#35a2ff;">{{ row.url }}</span>
           </template>
         </el-table-column>
-        <!-- <el-table-column label="Author" width="110px" align="center">
-          <template slot-scope="{row}">
-            <span>{{ row.author }}</span>
-          </template>
-        </el-table-column> -->
-        <!-- <el-table-column v-if="showReviewer" label="Reviewer" width="110px" align="center">
-          <template slot-scope="{row}">
-            <span style="color:red;">{{ row.reviewer }}</span>
-          </template>
-        </el-table-column> -->
+
         <el-table-column label="重要性" width="100px" align="center" >
           <template slot-scope="{row}">
             <svg-icon v-for="n in + row.importance" :key="n" icon-class="star" class="meta-item__icon" />
           </template>
         </el-table-column>
-        <!-- <el-table-column label="Readings" align="center" width="95">
-          <template slot-scope="{row}">
-            <span v-if="row.pageviews" class="link-type" @click="handleFetchPv(row.pageviews)">{{ row.pageviews }}</span>
-            <span v-else>0</span>
-          </template>
-        </el-table-column> -->
+
         <el-table-column label="任务状态" class-name="status-col" width="120">
           <template slot-scope="{row}">
             <el-tag :type="row.status | statusFilter">
@@ -83,7 +63,7 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="任务操作" align="center" width="260" class-name="small-padding fixed-width">
+        <el-table-column label="任务操作" align="center" width="280" class-name="small-padding fixed-width">
           <template slot-scope="{row,$index}">
             <el-button type="primary" size="mini" @click="handleUpdate(row)">
               编辑
@@ -96,7 +76,7 @@
               暂停
             </el-button>
             <el-button v-if="row.status=='done'" size="mini" type="danger" @click="handleFind(row,$index)">
-                查看
+                查看报告
             </el-button>
             <el-button v-if="row.status!='deleted'" size="mini" type="danger" @click="handleDelete(row,$index)">
               删除
@@ -105,16 +85,12 @@
           </template>
         </el-table-column>
       </el-table>
-  
-      <pagination  v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getList" />
-  
+      
+      <pagination  v-show="total>0" :total="total" :page.sync="listQuery.page" :limit.sync="listQuery.limit" @pagination="getAllTask" />
+
       <el-dialog :title="textMap[dialogStatus]" :visible.sync="dialogFormVisible">
         <el-form ref="dataForm" :rules="rules" :model="temp" label-position="left" label-width="90px" style="width: 400px; margin-left:50px;">
-          <!-- <el-form-item label="Type" prop="type">
-            <el-select v-model="temp.type" class="filter-item" placeholder="Please select">
-              <el-option v-for="item in calendarTypeOptions" :key="item.key" :label="item.display_name" :value="item.key" />
-            </el-select>
-          </el-form-item> -->
+
           <el-form-item label="目标网站" prop="title">
             <el-input v-model="temp.title" />
           </el-form-item>
@@ -123,11 +99,6 @@
             <el-date-picker v-model="temp.timestamp" type="datetime" placeholder="Please pick a date" />
           </el-form-item>
           
-          <!-- <el-form-item label="任务状态">
-            <el-select v-model="temp.status" class="filter-item" placeholder="Please select">
-              <el-option v-for="item in statusOptions" :key="item" :label="item" :value="item" />
-            </el-select>
-          </el-form-item> -->
           <el-form-item label="重要性">
             <el-rate v-model="temp.importance" :colors="['#99A9BF', '#F7BA2A', '#FF9900']" :max="3" style="margin-top:8px;" />
           </el-form-item>
@@ -253,7 +224,8 @@
       }
     },
     created() {
-      this.getList()
+      // this.getList()
+      this.getAllTask()
     },
     methods: {
       getList() {
@@ -262,11 +234,22 @@
           this.list = response.data.items
           this.total = response.data.total
           this.listLoading = false
-          // Just to simulate the time of the request
-          // setTimeout(() => {
-          //   this.listLoading = false
-          // }, 1.5 * 1000)
         })
+      },
+      getAllTask(){
+        this.listLoading = true
+
+        this.axios({
+                url:"api/detect-task/all?limit=10&"+"page="+this.listQuery.page,
+                method:'get'
+        }).then(res=>{
+            this.list = res.data.records;
+            this.total=res.data.total;
+            this.listLoading = false
+            console.log(res.data);
+            
+        })
+        this.listLoading = false
       },
       handleFilter() {
         this.listQuery.page = 1
@@ -409,4 +392,10 @@
     .filter-item{
         margin-right:20px
     }
+    .filter-container{
+      background-color: #343A40;
+      margin-bottom: 20px;
+    }
+
+      
 </style>

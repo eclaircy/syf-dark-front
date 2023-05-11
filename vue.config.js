@@ -6,7 +6,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const name = defaultSettings.title || 'vue Element Admin' // page title
+const name = defaultSettings.title || 'Rouge Killer' // page title
 
 // If your port is set to 80,
 // use administrator privileges to execute the command line.
@@ -44,6 +44,14 @@ module.exports = {
               '^/api': ''//重写,
           }
       },
+      '/demo': {
+        target: 'http://localhost:5000',//后端接口地址
+        changeOrigin: true,//是否允许跨越
+        pathRewrite: {
+            '^/demo': ''//重写,
+        },
+        // timeout:60000,
+    },
       
   },
     before: require('./mock/mock-server.js')
@@ -56,7 +64,15 @@ module.exports = {
       alias: {
         '@': resolve('src')
       }
+    },
+    module: {
+      rules: [{
+        test: /\.mjs$/,
+        include: /node_modules/,
+        type: 'javascript/auto'
+      }]
     }
+  
   },
   chainWebpack(config) {
     // it can improve the speed of the first screen, it is recommended to turn on preload

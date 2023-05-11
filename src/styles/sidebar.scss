@@ -244,13 +244,15 @@
 // }
 
 .el-menu-item.is-active {
-  background-image: linear-gradient(to right, #cd9cf2 0%, #f6f3ff 100%);
+  
+  background-image: #6a6a6a;
+  // linear-gradient(to right, #cd9cf2 0%, #f6f3ff 100%);
   border-radius: 14px;
 }
 
 // TODO:子目录被激活后的菜单背景色
 .is-active > .el-submenu__title {
-  background-image: #f3e9ff !important;
+  background-image: #6a6a6a !important;
   // border-radius: 14px;
 }
 

@@ -82,3 +82,89 @@
 .el-range-separator {
   box-sizing: content-box;
 }
+//TODO:修改el-card的边框样式
+
+.el-card{
+  background-color: #343A40 !important;
+}
+
+.el-card.is-always-shadow{
+  border-color: #343A40;
+  background-color: #343A40;
+}
+
+.el-card.is-hover-shadow{
+  border-color: #343A40;
+}
+
+// el-desc
+.el-descriptions-item__label.is-bordered-label {
+  font-weight: bold;
+  color: #c6c8ca !important;
+  background: #2c2a2a !important;
+}
+
+.el-descriptions--mini.is-bordered .el-descriptions-item__cell {
+
+  background-color: #4a4949;
+  color: white;
+}
+
+//el-table
+//每行的颜色
+.el-table tr {
+  background-color: #343A40 !important;
+}
+//table header color
+.el-table th.el-table__cell {
+  background-color: #343A40;
+}
+//table row select color
+.el-table__body tr.current-row > td.el-table__cell {
+  background-color: #454545cc;
+}
+
+  
+// 鼠标经过颜色改为粉红色
+.el-table__body tr:hover>td{
+  background-color: #454545cc !important;
+}
+  
+// 点击之后颜色改为粉红色  如果没有效果 需要给el-table  加上  highlight-current-row  这个属性
+.el-table__body tr.current-row>td{
+  background-color: #454545cc !important;
+}
+
+//表格边框颜色
+.el-table th.el-table__cell.is-leaf, .el-table td.el-table__cell {
+  border-bottom: 1px solid #636363;
+  border-left: 1px solid #636363;
+  border-top: 1px solid #636363;
+}
+.el-table--border .el-table__cell {
+  border-right: 1px solid #636363 !important;
+  border-left: 1px solid #636363;
+  border-top: 1px solid #636363;
+}
+
+.el-tabs__active-bar {
+  background-color: #d0b8fe !important;
+}
+.el-tabs__item.is-active {
+    color: #d0b8fe !important;
+}
+.el-tabs__item:hover {
+  color: #d0b8fe !important;
+}
+.el-pager li.active {
+  color: #d0b8fe !important;
+}
+.el-pager li:hover {
+  color: #d0b8fe !important;
+}
+
+.el-input-group__append, .el-input-group__prepend {
+  background-color: #313846;
+  color: #c0c4cc !important;
+  border: 1px solid #c7c7c7 !important;
+}

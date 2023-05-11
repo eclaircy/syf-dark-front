@@ -8,9 +8,7 @@ import Layout from '@/layout'
 
 /* Router Modules */
 import componentsRouter from './modules/components'
-import chartsRouter from './modules/charts'
-import tableRouter from './modules/table'
-import nestedRouter from './modules/nested'
+
 
 /**
  * Note: sub-menu only appear when route children.length >= 1
@@ -55,21 +53,7 @@ export const constantRoutes = [
     component: () => import('@/views/login/index'),
     hidden: true
   },
-  {
-    path: '/auth-redirect',
-    component: () => import('@/views/login/auth-redirect'),
-    hidden: true
-  },
-  {
-    path: '/404',
-    component: () => import('@/views/error-page/404'),
-    hidden: true
-  },
-  {
-    path: '/401',
-    component: () => import('@/views/error-page/401'),
-    hidden: true
-  },
+  
   
     // ////////////////////////////////////////////////////////////////////////////////////
       // ////////////////////////////////////////////////////////////////////////////////////
@@ -79,189 +63,243 @@ export const constantRoutes = [
   {
     path: '/',
     component: Layout,
-     redirect: '/dashboard',
+    redirect: '/dashboard',
+    meta: {
+      title: '网站分析系统', //网站分析
+      icon: 'el-icon-s-help'
+    },
     children: [
       {
         path: 'dashboard',
         component: () => import('@/views/mydashboard/index'),
         name: 'Dashboard',
-        meta: { title: '首页', icon: 'dashboard', affix: true }
-      }
-    ]
-  },
-
-    // {
-    //   path: '/black',
-    //   component: Layout,
-    //   children: [
-    //     {
-    //       path: 'index',
-    //       component: () => import('@/views/blacklist/index'),
-    //       name: 'black',
-    //       meta: { title: '黑名单管理', icon: 'documentation', affix: true }
-    //     }
-    //   ]
-    // },
-
-  {
-    path: '/malwaresites',
-    component: Layout,
-    name: 'sites',
-    redirect: '/malwaresites/index',
-    meta: {
-      title: '网站分析',
-      icon: 'el-icon-s-help'
-    },
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/malwaresites/index'),
-        name: 'Malwaresites',
-        meta: { title: '旧网站查询', icon: 'documentation', affix: true },
-        hidden: true
+        meta: { title: '网站情报总览', icon: 'dashboard', affix: true }
       },
       {
-        path: '/detect/index',
-        component: () => import('@/views/malwaresites/detect/index'),
-        name: 'detect',
-        meta: { title: '实时检测', icon: 'documentation', affix: true },
-      },
-      {
-        path: '/detail/index',
+        path: '/sites/detail',
         component: () => import('@/views/malwaresites/detail/index'),
         name: 'detail',
         meta: { title: '详情页', icon: 'documentation', affix: true },
         hidden: true
       },
       {
-        path: '/search/index',
+        path: '/sites/search',
         component: () => import('@/views/malwaresites/search/index'),
         name: 'search',
-        meta: { title: '网站查询', icon: 'documentation', affix: true },
-        // hidden: true
+        meta: { title: '网站画像', icon: 'documentation', affix: true },
       },
-      {
-        path: '/black',
-        // component: Layout,
-        // children: [
-          // {
-          //   path: 'index',
-            component: () => import('@/views/blacklist/index'),
-            name: 'black',
-            meta: { title: '黑名单管理', icon: 'documentation', affix: true }
-          // }
-        // ]
-      },
-
     ]
   },
+
+  // {
+  //   path: '/sites',
+  //   component: Layout,
+  //   name: 'sites',
+  //   // redirect: '/malwaresites/index',
+  //   meta: {
+  //     title: '网站分析系统', //网站分析
+  //     icon: 'el-icon-s-help'
+  //   },
+  //   children: [
+  //     // {
+  //     //   path: 'index',
+  //     //   component: () => import('@/views/malwaresites/index'),
+  //     //   name: 'Malwaresites',
+  //     //   meta: { title: '旧网站查询', icon: 'documentation', affix: true },
+  //     //   hidden: true
+  //     // },
+  //     {
+  //       path: '/dashboard',
+  //       component: () => import('@/views/mydashboard/index'),
+  //       name: 'Dashboard',
+  //       meta: { title: '网站情报总览', icon: 'dashboard', affix: true }
+  //     },
+  //     // {
+  //     //   path: 'detect',
+  //     //   component: () => import('@/views/malwaresites/detect/index'),
+  //     //   name: 'detect',
+  //     //   meta: { title: '实时检测', icon: 'documentation', affix: true },
+  //     // },
+  //     {
+  //       path: 'detail',
+  //       component: () => import('@/views/malwaresites/detail/index'),
+  //       name: 'detail',
+  //       meta: { title: '详情页', icon: 'documentation', affix: true },
+  //       hidden: true
+  //     },
+  //     {
+  //       path: 'search',
+  //       component: () => import('@/views/malwaresites/search/index'),
+  //       name: 'search',
+  //       meta: { title: '网站画像', icon: 'documentation', affix: true },
+  //       // hidden: true
+  //     },
+  //     // {
+  //     //   path: 'task',
+  //     //   component: () => import('@/views/spider/ComplexTable'),
+  //     //   name: 'spider-manage',
+  //     //   meta: { title: '检测任务配置', icon: 'documentation', affix: true }
+  //     // },
+  //     // {
+  //     //   path: 'black',
+  //     //   // component: Layout,
+  //     //   // children: [
+  //     //     // {
+  //     //     //   path: 'index',
+  //     //       component: () => import('@/views/blacklist/index'),
+  //     //       name: 'black',
+  //     //       meta: { title: '黑名单管理', icon: 'documentation', affix: true }
+  //     //     // }
+  //     //   // ]
+  //     // },
+
+  //   ]
+  // },
   {
-    path: '/malwaregroup',
+    path: '/regulate',
     component: Layout,
-    name: 'sites',
+    name:'regulate',
+    // hidden:true,
     meta: {
-      title: '组织分析',
-      icon: 'el-icon-s-help'
+      title: '实时审查系统',
+      icon: 'el-icon-share'
     },
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/malware-group/index'),
-        name: 'MalwareGan',
-        meta: { title: '图谱总览', icon: 'documentation', affix: true }
-        // , hidden: true
+        path: 'detect',
+        component: () => import('@/views/malwaresites/detect/index'),
+        name: 'detect',
+        meta: { title: '实时检测', icon: 'el-icon-search', affix: true },
       },
       {
-        path: '/analyse/index',
-        component: () => import('@/views/malware-group/analyse/index'),
-        name: 'analyse1',
-        meta: { title: '团伙详情', icon: 'documentation', affix: true }
+        path: 'task',
+        component: () => import('@/views/spider/ComplexTable'),
+        name: 'task-manage',
+        meta: { title: '检测任务配置', icon: 'el-icon-search', affix: true }
       },
+
     ]
   },
   {
-    path: '/spider',
+    path: '/trace',
     component: Layout,
-    // hidden:true,
+    name: 'trace',
+    // redirect: '/overview',
+    meta: {
+      title: '追踪溯源系统',//溯源与团伙挖掘
+      icon: 'el-icon-view'
+    },
+    alwaysShow: true,
+    children: [
+      {
+        path: 'similar',
+        component: () => import('@/views/malware-group/similar/index'),
+        name: 'similar',
+        meta: { title: '同源性分析', icon: 'el-icon-map-location', affix: true },
+      },
+      {
+        path: 'person',
+        component: () => import('@/views/person/index'),
+        name: 'person',
+        meta: { title: '人员追踪', icon: 'el-icon-aim', affix: true },
+      },
+      {
+        path: 'person/detail',
+        component: () => import('@/views/person/detail/index'),
+        name: 'person-detail',
+        meta: { title: '人员画像', icon: 'documentation', affix: true },
+        hidden: true
+      },
+      {
+        path: 'overview',
+        component: () => import('@/views/malware-group/overview/index'),
+        name: 'overview',
+        meta: { title: '团伙挖掘', icon: 'dashboard', affix: true },
+      },
+      {
+        path: 'analyse',
+        component: () => import('@/views/malware-group/analyse/index'),
+        name: 'analyse',
+        meta: { title: '团伙详情', icon: 'documentation', affix: true },
+        hidden:true,
+      },
+    ]
+  },
+
+  {
+    path: '/area',
+    component: Layout,
+    // redirect: '/manage',
+    children: [
+      {
+        path: 'manage',
+        component: () => import('@/views/area-manage/index'),
+        name: 'area-manage',
+        meta: { title: '区域监管', icon: 'el-icon-s-help', affix: true }
+      }
+    ],
+    hidden:true,
+  },
+  {
+    path: '/robot',
+    component: Layout,
     children: [
       {
         path: 'index',
-        component: () => import('@/views/spider/ComplexTable'),
-        name: 'spider',
-        meta: { title: '爬虫管理', icon: 'documentation', affix: true }
+        component: () => import('@/views/robot/index'),
+        name: 'robot-answer',
+        meta: { title: '智能问答系统', icon: 'el-icon-chat-dot-round', affix: true }
       }
     ]
   },
 
   {
-    path: '/complaint',
+    path: '/manage',
     component: Layout,
+    meta: {
+      title: '系统管理',
+      icon: 'el-icon-s-tools'
+    },
     children: [
       {
-        path: 'index',
-        component: () => import('@/views/malware-complaint/index'),
-        name: 'complaint',
-        meta: { title: '用户举报', icon: 'documentation', affix: true }
-      }
+        path: 'spider',
+        component: () => import('@/views/spider/system-spider/index'),
+        name: 'system-spider',
+        meta: { title: '系统爬虫', icon: 'bug', affix: true }
+      },
+      {
+        path: 'user',
+        component: () => import('@/views/user-manage/index'),
+        name: 'user-manage',
+        meta: { title: '用户管理', icon: 'el-icon-s-tools', affix: true }
+      },
+      {
+        path: 'plugin',
+        component: () => import('@/views/plugin-manage/index'),
+        name: 'plugin-manage',
+        meta: { title: '系统插件', icon: 'el-icon-s-promotion', affix: true }
+      },
     ]
   },
+  // {
+  //   path: '/complaint',
+  //   component: Layout,
+  //   name:"complaint",
+  //   children: [
+  //     {
+  //       path: 'index',
+  //       component: () => import('@/views/malware-complaint/index'),
+  //       name: 'user-complaint',
+  //       meta: { title: '用户举报', icon: 'documentation', affix: true }
+  //     }
+  //   ]
+  // },
   // ////////////////////////////////////////////////////////////////////////////////////
         // ////////////////////////////////////////////////////////////////////////////////////
         // ////////////////////////////////////////////////////////////////////////////////////
           // ////////////////////////////////////////////////////////////////////////////////////
             // ////////////////////////////////////////////////////////////////////////////////////
-  {
-    path: '/origin',
-    component: Layout,
-    redirect: '/dashboard1',
-    children: [
-      {
-        path: 'dashboard1',
-        component: () => import('@/views/dashboard/index'),
-        name: 'Dashboard1',
-        meta: { title: 'Dashboard1', icon: 'dashboard', affix: true }, hidden: true
-      }
-    ]
-  },
-  {
-    path: '/documentation',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/documentation/index'),
-        name: 'Documentation',
-        meta: { title: 'Documentation', icon: 'documentation', affix: true }, hidden: true
-      }
-    ]
-  },
-  {
-    path: '/guide',
-    component: Layout,
-    redirect: '/guide/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/guide/index'),
-        name: 'Guide',
-        meta: { title: 'Guide', icon: 'guide', noCache: true }, hidden: true
-      }
-    ]
-  },
-  {
-    path: '/profile',
-    component: Layout,
-    redirect: '/profile/index',
-    hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/profile/index'),
-        name: 'Profile',
-        meta: { title: 'Profile', icon: 'user', noCache: true }, hidden: true
-      }
-    ]
-  }
+  
 ]
 
 /**
@@ -269,259 +307,10 @@ export const constantRoutes = [
  * the routes that need to be dynamically loaded based on user roles
  */
 export const asyncRoutes = [
-  {
-    path: '/permission',
-    component: Layout,
-    redirect: '/permission/page',
-    alwaysShow: true, // will always show the root menu
-    name: 'Permission',hidden: true,
-    meta: {
-      title: 'Permission',
-      icon: 'lock',
-      roles: ['admin', 'editor'] // you can set roles in root nav
-    },
-    children: [
-      {
-        path: 'page',
-        component: () => import('@/views/permission/page'),
-        name: 'PagePermission',
-        meta: {
-          title: 'Page Permission',hidden: true,
-          roles: ['admin'] // or you can only set roles in sub nav
-        }
-      },
-      {
-        path: 'directive',
-        component: () => import('@/views/permission/directive'),
-        name: 'DirectivePermission',hidden: true,
-        meta: {
-          title: 'Directive Permission'
-          // if do not set roles, means: this page does not require permission
-        }
-      },
-      {
-        path: 'role',
-        component: () => import('@/views/permission/role'),
-        name: 'RolePermission',hidden: true,
-        meta: {
-          title: 'Role Permission',
-          roles: ['admin']
-        }
-      }
-    ]
-  },
-
-  {
-    path: '/icon',
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/icons/index'),
-        name: 'Icons',
-        meta: { title: 'Icons', icon: 'icon', noCache: true },hidden: true,
-      }
-    ]
-  },
-
+  
+  
   /** when your routing map is too long, you can split it into small modules **/
   componentsRouter,
-  chartsRouter,
-  nestedRouter,
-  tableRouter,
-
-  {
-    path: '/example',
-    component: Layout,
-    redirect: '/example/list',
-    name: 'Example',hidden: true,
-    meta: {
-      title: 'Example',
-      icon: 'el-icon-s-help'
-    },
-    children: [
-      {
-        path: 'create',
-        component: () => import('@/views/example/create'),
-        name: 'CreateArticle',
-        meta: { title: 'Create Article', icon: 'edit' }
-      },
-      {
-        path: 'edit/:id(\\d+)',
-        component: () => import('@/views/example/edit'),
-        name: 'EditArticle',
-        meta: { title: 'Edit Article', noCache: true, activeMenu: '/example/list' },
-        hidden: true
-      },
-      {
-        path: 'list',
-        component: () => import('@/views/example/list'),
-        name: 'ArticleList',
-        meta: { title: 'Article List', icon: 'list' }
-      }
-    ]
-  },
-
-  {
-    path: '/tab',
-    component: Layout,hidden: true,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/tab/index'),
-        name: 'Tab',
-        meta: { title: 'Tab', icon: 'tab' }
-      }
-    ]
-  },
-
-  {
-    path: '/error',
-    component: Layout,hidden: true,
-    redirect: 'noRedirect',
-    name: 'ErrorPages',
-    meta: {
-      title: 'Error Pages',
-      icon: '404'
-    },
-    children: [
-      {
-        path: '401',
-        component: () => import('@/views/error-page/401'),
-        name: 'Page401',
-        meta: { title: '401', noCache: true }
-      },
-      {
-        path: '404',
-        component: () => import('@/views/error-page/404'),
-        name: 'Page404',
-        meta: { title: '404', noCache: true }
-      }
-    ]
-  },
-
-  {
-    path: '/error-log',hidden: true,
-    component: Layout,
-    children: [
-      {
-        path: 'log',
-        component: () => import('@/views/error-log/index'),
-        name: 'ErrorLog',
-        meta: { title: 'Error Log', icon: 'bug' }
-      }
-    ]
-  },
-
-  {
-    path: '/excel',hidden: true,
-    component: Layout,
-    redirect: '/excel/export-excel',
-    name: 'Excel',
-    meta: {
-      title: 'Excel',
-      icon: 'excel'
-    },
-    children: [
-      {
-        path: 'export-excel',
-        component: () => import('@/views/excel/export-excel'),
-        name: 'ExportExcel',
-        meta: { title: 'Export Excel' }
-      },
-      {
-        path: 'export-selected-excel',
-        component: () => import('@/views/excel/select-excel'),
-        name: 'SelectExcel',
-        meta: { title: 'Export Selected' }
-      },
-      {
-        path: 'export-merge-header',
-        component: () => import('@/views/excel/merge-header'),
-        name: 'MergeHeader',
-        meta: { title: 'Merge Header' }
-      },
-      {
-        path: 'upload-excel',
-        component: () => import('@/views/excel/upload-excel'),
-        name: 'UploadExcel',
-        meta: { title: 'Upload Excel' }
-      }
-    ]
-  },
-
-  {
-    path: '/zip',hidden: true,
-    component: Layout,
-    redirect: '/zip/download',
-    alwaysShow: true,
-    name: 'Zip',
-    meta: { title: 'Zip', icon: 'zip' },
-    children: [
-      {
-        path: 'download',
-        component: () => import('@/views/zip/index'),
-        name: 'ExportZip',
-        meta: { title: 'Export Zip' }
-      }
-    ]
-  },
-
-  {
-    path: '/pdf',hidden: true,
-    component: Layout,
-    redirect: '/pdf/index',
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/pdf/index'),
-        name: 'PDF',
-        meta: { title: 'PDF', icon: 'pdf' }
-      }
-    ]
-  },
-  {
-    path: '/pdf/download',hidden: true,
-    component: () => import('@/views/pdf/download'),
-    hidden: true
-  },
-
-  {
-    path: '/theme',hidden: true,
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/theme/index'),
-        name: 'Theme',
-        meta: { title: 'Theme', icon: 'theme' }
-      }
-    ]
-  },
-
-  {
-    path: '/clipboard',hidden: true,
-    component: Layout,
-    children: [
-      {
-        path: 'index',
-        component: () => import('@/views/clipboard/index'),
-        name: 'ClipboardDemo',
-        meta: { title: 'Clipboard', icon: 'clipboard' }
-      }
-    ]
-  },
-
-  {
-    path: 'external-link',hidden: true,
-    component: Layout,
-    children: [
-      {
-        path: 'https://github.com/PanJiaChen/vue-element-admin',
-        meta: { title: 'External Link', icon: 'link' }
-      }
-    ]
-  },
 
   // 404 page must be placed at the end !!!
   { path: '*', redirect: '/404', hidden: true }

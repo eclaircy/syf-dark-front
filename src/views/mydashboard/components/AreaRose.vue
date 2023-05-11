@@ -20,6 +20,7 @@ export default {
 
             const rosePlot = new Rose('rose-container', {
             data,
+            theme: 'dark',
             // autoFit:true,
             // padding:[16, 8, 16, 8], //上右下左
             xField: 'type',

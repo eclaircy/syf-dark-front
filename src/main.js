@@ -16,11 +16,15 @@ import './permission' // permission control
 import './utils/error-log' // error log
 import * as filters from './filters' // global filters
 
-// import 'element-theme-dark';
+import 'element-theme-dark';
 
-// import { useDark, useToggle } from '@vueuse/core'
-// const isDark = useDark()
-// const toggleDark = useToggle(isDark)
+
+import 'ant-design-vue/dist/antd.css';
+import { Button, Timeline,List,Avatar,Table,Collapse,Badge,Input } from "ant-design-vue";
+Vue.use(Button).use(Timeline).use(List).use(Avatar).use(Table).use(Collapse).use(Badge).use(Input)
+
+import VueParticles from 'vue-particles'  
+Vue.use(VueParticles)  
 
 
 

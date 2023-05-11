@@ -27,6 +27,7 @@ export default {
                 var data = res.data;
                 const area = new Area('stack-area-container', {
                 data,
+                
                 smooth:true,
                 autoFit:true,
                 xField: 'year', //'date'

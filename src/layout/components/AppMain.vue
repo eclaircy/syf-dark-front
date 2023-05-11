@@ -1,7 +1,64 @@
 <template>
   <section class="app-main">
+    <!-- <vue-particles
+    color="#fff"
+    :particleOpacity="0.7"
+    :particlesNumber="60"
+    shapeType="circle"
+    :particleSize="4"
+    linesColor="#fff"
+    :linesWidth="1"
+    :lineLinked="true"
+    :lineOpacity="0.4"
+    :linesDistance="150"
+    :moveSpeed="2"
+    :hoverEffect="true"
+    hoverMode="grab"
+    :clickEffect="true"
+    clickMode="push"
+    class="lizi"
+  >
+</vue-particles> -->
     <transition name="fade-transform" mode="out-in">
       <keep-alive :include="cachedViews">
+        <!-- <vue-particles
+        color="#fff"
+        :particleOpacity="0.7"
+        :particlesNumber="60"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#fff"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="2"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+        class="lizi"
+      >
+    </vue-particles> -->
+    <!-- <vue-particles
+        class="par-box"
+        color="#409EFF"
+        :particleOpacity="0.7"
+        :particlesNumber="80"
+        shapeType="circle"
+        :particleSize="4"
+        linesColor="#409EFF"
+        :linesWidth="1"
+        :lineLinked="true"
+        :lineOpacity="0.4"
+        :linesDistance="150"
+        :moveSpeed="3"
+        :hoverEffect="true"
+        hoverMode="grab"
+        :clickEffect="true"
+        clickMode="push"
+        ></vue-particles> -->
+
         <router-view :key="key" />
       </keep-alive>
     </transition>
@@ -31,8 +88,7 @@ export default {
   width: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #F8F9FE;  //TODO:app main全局背景颜色
-  
+  background-color: #454D55;  //TODO:app main全局背景颜色 
 }
 
 .fixed-header+.app-main {
@@ -48,6 +104,12 @@ export default {
   .fixed-header+.app-main {
     padding-top: 84px;
   }
+}
+
+#particles-js {
+  width: 100%;
+  height: calc(100% - 100px);
+  position: absolute;
 }
 </style>
 
