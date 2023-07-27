@@ -71,6 +71,8 @@ export default {
     }
 
     & .sidebar-title {
+      font-style: italic;
+      font-family: Times New Roman;
       display: inline-block;
       margin: 0;
       color: #a4579d;

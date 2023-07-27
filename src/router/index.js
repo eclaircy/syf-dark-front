@@ -90,71 +90,6 @@ export const constantRoutes = [
       },
     ]
   },
-
-  // {
-  //   path: '/sites',
-  //   component: Layout,
-  //   name: 'sites',
-  //   // redirect: '/malwaresites/index',
-  //   meta: {
-  //     title: '网站分析系统', //网站分析
-  //     icon: 'el-icon-s-help'
-  //   },
-  //   children: [
-  //     // {
-  //     //   path: 'index',
-  //     //   component: () => import('@/views/malwaresites/index'),
-  //     //   name: 'Malwaresites',
-  //     //   meta: { title: '旧网站查询', icon: 'documentation', affix: true },
-  //     //   hidden: true
-  //     // },
-  //     {
-  //       path: '/dashboard',
-  //       component: () => import('@/views/mydashboard/index'),
-  //       name: 'Dashboard',
-  //       meta: { title: '网站情报总览', icon: 'dashboard', affix: true }
-  //     },
-  //     // {
-  //     //   path: 'detect',
-  //     //   component: () => import('@/views/malwaresites/detect/index'),
-  //     //   name: 'detect',
-  //     //   meta: { title: '实时检测', icon: 'documentation', affix: true },
-  //     // },
-  //     {
-  //       path: 'detail',
-  //       component: () => import('@/views/malwaresites/detail/index'),
-  //       name: 'detail',
-  //       meta: { title: '详情页', icon: 'documentation', affix: true },
-  //       hidden: true
-  //     },
-  //     {
-  //       path: 'search',
-  //       component: () => import('@/views/malwaresites/search/index'),
-  //       name: 'search',
-  //       meta: { title: '网站画像', icon: 'documentation', affix: true },
-  //       // hidden: true
-  //     },
-  //     // {
-  //     //   path: 'task',
-  //     //   component: () => import('@/views/spider/ComplexTable'),
-  //     //   name: 'spider-manage',
-  //     //   meta: { title: '检测任务配置', icon: 'documentation', affix: true }
-  //     // },
-  //     // {
-  //     //   path: 'black',
-  //     //   // component: Layout,
-  //     //   // children: [
-  //     //     // {
-  //     //     //   path: 'index',
-  //     //       component: () => import('@/views/blacklist/index'),
-  //     //       name: 'black',
-  //     //       meta: { title: '黑名单管理', icon: 'documentation', affix: true }
-  //     //     // }
-  //     //   // ]
-  //     // },
-
-  //   ]
-  // },
   {
     path: '/regulate',
     component: Layout,
@@ -215,6 +150,15 @@ export const constantRoutes = [
         component: () => import('@/views/malware-group/overview/index'),
         name: 'overview',
         meta: { title: '团伙挖掘', icon: 'dashboard', affix: true },
+        // children: [
+        //   {
+        //     path: 'analyse',
+        //     component: () => import('@/views/malware-group/analyse/index'),
+        //     name: 'analyse',
+        //     meta: { title: '团伙详情', icon: 'documentation', affix: true },
+        //     hidden:true,
+        //   }
+        // ]
       },
       {
         path: 'analyse',
@@ -261,12 +205,12 @@ export const constantRoutes = [
       icon: 'el-icon-s-tools'
     },
     children: [
-      {
-        path: 'spider',
-        component: () => import('@/views/spider/system-spider/index'),
-        name: 'system-spider',
-        meta: { title: '系统爬虫', icon: 'bug', affix: true }
-      },
+      // {
+      //   path: 'spider',
+      //   component: () => import('@/views/spider/system-spider/index'),
+      //   name: 'system-spider',
+      //   meta: { title: '系统爬虫', icon: 'bug', affix: true }
+      // },
       {
         path: 'user',
         component: () => import('@/views/user-manage/index'),

@@ -84,7 +84,7 @@ export default {
                         x: 0,
                         y: 25,
                         text: `${data.value}个 ${(data.percent * 100).toFixed(2)}%`,
-                        fill: 'rgba(0, 0, 0, 0.65)',
+                        fill: '#C2C2C2',
                         fontWeight: 700,
                         },
                     });

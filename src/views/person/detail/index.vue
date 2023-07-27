@@ -1,177 +1,305 @@
 <template>
     <div class="page" style="padding:20px;height:700px;">
         <el-row>
-            <el-card>
+            <el-card >
                  <div style="font-size: 20px;margin-bottom: 7px;">人员画像</div>
                  <!-- <span>人员画像，介绍xxxxx</span> -->
             </el-card>
         </el-row>
 
-        <el-row :gutter="20" style="margin-top:20px;">
+        <el-row :gutter="20" style="margin-top:20px;margin-bottom:20px;height:575px;">
             <el-col :span="6" :xs="24">
               <person-card :personInfo="personInfo" />
             </el-col>
     
             <el-col :span="18" :xs="24">
-              <el-card body-style="min-height:526px;">
+                <!--min-height:526px;  -->
+              <el-card body-style="height:578px;">
                 <el-tabs v-model="activeTab">
-                  <el-tab-pane label="旗下公司" name="company">
-                    <!-- 表格1：公司 -->
-                    <div style="">
-                      <el-descriptions class="margin-top" :column="2" size="medium" border>
-                          <template slot="title" >
-                              <i class=" el-icon-user-solid" style="color:#C6C8C0" ></i> 
-                              <span style="color:#C6C8C0">公司溯源</span>
-                          </template>
-                      <el-descriptions-item label="主办单位名">
-                        <div class="null-text" v-if="personInfo.companyList[0].companyName==null">暂无</div>
-                        <div v-else>{{personInfo.companyList[0].companyName}}</div>
-                      </el-descriptions-item>
-                      <el-descriptions-item label="单位性质">
-                        <div class="null-text" v-if="personInfo.companyList[0].companyType==null">暂无</div>
-                        <div v-else>{{personInfo.companyList[0].companyType}}</div>
-                      </el-descriptions-item>
-                      <el-descriptions-item>
+                    <el-tab-pane label="人员关系链" name="group">
                         <template slot="label">
-                          <!-- <i class="el-icon-user"></i> -->
-                          法定代表人
+                            <svg style="position: absolute;bottom:4;" t="1686316849629" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4401" data-spm-anchor-id="a313x.7781069.0.i55" width="30" height="30"><path d="M478.179556 350.449778c0 5.617778-0.156444 11.207111-0.867556 16.654222-6.016 56.647111-41.671111 104.789333-91.491556 127.729778-16.213333 7.694222-33.706667 12.444444-52.039111 14.264889-5.020444 0.440889-9.941333 0.725333-14.961778 0.725333-1.550222 0-3.100444 0-4.608-0.284444-23.665778-0.583111-45.767111-6.314667-65.621333-16.099556-12.302222-6.030222-23.637333-13.568-33.863111-22.371556-29.795556-25.756444-50.076444-62.407111-54.4-103.964444-0.554667-5.447111-0.853333-11.036444-0.853333-16.654222 0-30.336 8.248889-58.325333 22.784-82.375111 0.440889-0.711111 0.867556-1.393778 1.137778-1.962667 22.101333-35.541333 57.784889-61.411556 99.754667-71.068444 11.491556-2.517333 23.352889-3.911111 35.683556-3.911111 65.180444 0 121.287111 38.897778 145.777778 95.004444 0 0.128 0.270222 0.128 0.270222 0.398222C473.272889 305.976889 478.179556 327.651556 478.179556 350.449778zM411.576889 503.651556c-8.248889-3.370667-16.654222-6.442667-25.756444-8.817778-42.510222-11.335111-92.472889-11.889778-137.230222-1.408-11.192889 2.801778-22.371556 6.144-32.867556 10.225778-0.284444 0.128-0.725333 0.270222-0.995556 0.412444-23.352889 9.244444-44.643556 19.313778-63.772444 29.795556C43.363556 592.896 1.408 668.16 3.356444 729.031111c2.232889 71.921778 292.252444 69.390222 316.743111 69.532444 24.334222 0.298667 291.399111 1.664 292.792889-69.532444C610.929778 629.973333 468.508444 527.274667 411.576889 503.651556zM323.441778 745.528889l-62.947556-51.626667 53.731556-184.362667c1.507556 0.284444 3.057778 0.284444 4.608 0.284444 5.020444 0 9.941333-0.284444 14.961778-0.725333l45.184 185.784889L323.441778 745.528889zM474.168889 287.957333M497.777778 469.333333l213.333333 0 0 28.444444-213.333333 0 0-28.444444ZM682.666667 184.888889l28.444444 0 0 597.333333-28.444444 0 0-597.333333ZM682.666667 184.888889l241.777778 0 0 28.444444-241.777778 0 0-28.444444ZM696.888889 469.333333l227.555556 0 0 28.444444-227.555556 0 0-28.444444ZM682.666667 753.777778l241.777778 0 0 28.444444-241.777778 0 0-28.444444ZM977.777778 200.888889m-33.777778 0a2.375 2.375 0 1 0 67.555556 0 2.375 2.375 0 1 0-67.555556 0ZM977.777778 485.333333m-33.777778 0a2.375 2.375 0 1 0 67.555556 0 2.375 2.375 0 1 0-67.555556 0ZM977.777778 769.777778m-33.777778 0a2.375 2.375 0 1 0 67.555556 0 2.375 2.375 0 1 0-67.555556 0Z" fill="#AFB4FF" p-id="4402" data-spm-anchor-id="a313x.7781069.0.i51" class="selected"></path></svg> 
+                            <span style="margin-left:34px;bottom:0;">人员关系链</span>
                         </template>
-                        <div class="null-text" v-if="personInfo.personName==null">暂无</div>
-                        <el-tag v-else size="small" type="plain" style="border-color:purple;color: purple;">{{personInfo.personName}}</el-tag>
-                      </el-descriptions-item>
-                    
-                      <el-descriptions-item>
-                        <template slot="label">
-                          <!-- <i class="el-icon-location-outline"></i> -->
-                          注册资本
-                        </template>
-                        <div class="null-text" v-if="personInfo.companyList[0].registerCapital==null">暂无</div>
-                        <div v-else>{{personInfo.companyList[0].registerCapital}}</div>
-                      </el-descriptions-item>
-              
-                      <el-descriptions-item>
-                        <template slot="label">
-                          <!-- <i class="el-icon-tickets"></i> -->
-                          注册时间
-                        </template>
-                        <div class="null-text" v-if="personInfo.companyList[0].registerTime==null">暂无</div>
-                        <el-tag v-else size="small" type="plain" style="border-color:purple;color: purple;">{{personInfo.companyList[0].registerTime}}</el-tag>
-                      </el-descriptions-item>
-              
-                      <el-descriptions-item>
-                        <template slot="label">
-                          <!-- <i class="el-icon-office-building"></i> -->
-                          公司状态
-                        </template>
-                        <div class="null-text" v-if="personInfo.companyList[0].companyStatus==null">暂无</div>
-                        <div v-else>{{personInfo.companyList[0].companyStatus}}</div>
-                      </el-descriptions-item>
-                      <el-descriptions-item>
-                          <template slot="label">
-                            <!-- <i class="el-icon-office-building"></i> -->
-                            公司类型
-                          </template>
-                          <div class="null-text" v-if="personInfo.companyList[0].companyType==null">暂无</div>
-                          <div v-else>{{personInfo.companyList[0].companyType}}</div>
-                      </el-descriptions-item>
-                      <el-descriptions-item>
-                          <template slot="label">
-                            工商注册号
-                          </template>
-                          <div class="null-text" v-if="personInfo.companyList[0].registerNumber==null">暂无</div>
-                          <div v-else>{{personInfo.companyList[0].registerNumber}}</div>
-                      </el-descriptions-item>
-                      <el-descriptions-item>
-                      <template slot="label">
-                          所属行业
-                      </template>
-                      <div class="null-text" v-if="personInfo.companyList[0].industry==null">暂无</div>
-                      <div v-else>{{personInfo.companyList[0].industry}}</div>
-                      </el-descriptions-item>
-                      <el-descriptions-item>
-                          <template slot="label">
-                              核准日期
-                          </template>
-                          <div class="null-text" v-if="personInfo.companyList[0].approvalDate==null">暂无</div>
-                          <div v-else>{{personInfo.companyList[0].approvalDate}}</div>
-                      </el-descriptions-item>
-                      <el-descriptions-item>
-                          <template slot="label">
-                              注册地址
-                          </template>
-                          <div class="null-text" v-if="personInfo.companyList[0].registerAddress==null">暂无</div>
-                          <div v-else>{{personInfo.companyList[0].registerAddress}}</div>
-                      </el-descriptions-item>
-              
-                      <el-descriptions-item>
-                          <template slot="label">
-                              经营范围
-                          </template>
-                          <div style="height:40px;overflow: hidden; /* 隐藏超出部分 */
-                          text-overflow: ellipsis; /* 以省略号显示超出部分 */
-                          white-space: nowrap; /* 不换行 */">
-                              <div class="null-text" v-if="personInfo.companyList[0].businessScope==null">暂无</div>
-                              <div v-else style="height:60px">{{personInfo.companyList[0].businessScope}}</div>
+                        <!--  展示合作图谱？展示所在团伙情况，以及id，给予跳转到团伙详情的链接 -->
+                        <div>
+                            <div class="info-box mb-3 bg-warning" style="background-color: ;">
+                                <span class="info-box-icon">
+                                    <svg  width="40" height="40" t="1686318716189" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="1504"><path d="M103.185067 510.634667c0 225.518933 182.784 408.302933 408.234666 408.302933 225.4848 0 408.2688-182.784 408.2688-408.2688S736.938667 102.4 511.453867 102.4C285.969067 102.4 103.185067 285.184 103.185067 510.634667z" fill="#85C2FF" p-id="1505"></path><path d="M605.7984 474.760533l-0.682667-1.570133c-0.1024-0.1024-0.1024-0.170667-0.2048-0.341333a35.6352 35.6352 0 1 0-63.3856 32.426666c9.898667 22.357333 5.563733 49.5616-12.6976 67.925334L433.186133 669.013333a60.928 60.928 0 0 1-86.084266 0 60.928 60.928 0 0 1 0-86.084266l35.6352-35.669334-0.238934-0.238933a35.601067 35.601067 0 1 0-49.5616-50.858667l-0.1024-0.1024-36.352 36.352a132.164267 132.164267 0 0 0 0 186.948267 132.164267 132.164267 0 0 0 186.948267 0l95.914667-95.914667a132.232533 132.232533 0 0 0 26.453333-148.6848z" fill="#FFFFFF" p-id="1506"></path><path d="M731.4432 292.317867a132.164267 132.164267 0 0 0-186.948267 0l-95.914666 95.914666a132.232533 132.232533 0 0 0-26.5216 148.616534l0.682666 1.536c0.1024 0.1024 0.1024 0.2048 0.170667 0.341333a35.6352 35.6352 0 1 0 63.3856-32.426667 61.303467 61.303467 0 0 1 12.6976-67.925333l95.744-95.709867a60.928 60.928 0 0 1 86.084267 0 60.928 60.928 0 0 1 0 86.084267l-35.6352 35.6352 0.238933 0.273067a35.601067 35.601067 0 1 0 49.595733 50.858666l0.068267 0.1024 36.352-36.352a132.3008 132.3008 0 0 0 0-186.948266z" fill="#FFFFFF" p-id="1507"></path></svg>
+                                </span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">相关网站</span>
+                                    <span class="info-box-number">{{labelCounts.Website==undefined?0:labelCounts.Website}}</span>
+                                </div>
+                            </div>
 
-                          </div>
-                         
-                      </el-descriptions-item>
-              
-                    </el-descriptions>
-                  </div>
+                            <div class="info-box mb-3 bg-warning" style="background-color: ;">
+                                <span class="info-box-icon">
+                                    <svg t="1686320874826" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3260" id="mx_n_1686320874827" width="40" height="40" data-spm-anchor-id="a313x.7781069.0.i57"><path d="M103.185067 510.634667c0 225.518933 182.784 408.302933 408.234666 408.302933 225.4848 0 408.2688-182.784 408.2688-408.2688S736.938667 102.4 511.453867 102.4C285.969067 102.4 103.185067 285.184 103.185067 510.634667z" fill="#9487DD" p-id="3261" data-spm-anchor-id="a313x.7781069.0.i50" class=""></path><path d="M605.7984 474.760533l-0.682667-1.570133c-0.1024-0.1024-0.1024-0.170667-0.2048-0.341333a35.6352 35.6352 0 1 0-63.3856 32.426666c9.898667 22.357333 5.563733 49.5616-12.6976 67.925334L433.186133 669.013333a60.928 60.928 0 0 1-86.084266 0 60.928 60.928 0 0 1 0-86.084266l35.6352-35.669334-0.238934-0.238933a35.601067 35.601067 0 1 0-49.5616-50.858667l-0.1024-0.1024-36.352 36.352a132.164267 132.164267 0 0 0 0 186.948267 132.164267 132.164267 0 0 0 186.948267 0l95.914667-95.914667a132.232533 132.232533 0 0 0 26.453333-148.6848z" fill="#e6e6e6" p-id="3262" data-spm-anchor-id="a313x.7781069.0.i51" class="selected"></path><path d="M731.4432 292.317867a132.164267 132.164267 0 0 0-186.948267 0l-95.914666 95.914666a132.232533 132.232533 0 0 0-26.5216 148.616534l0.682666 1.536c0.1024 0.1024 0.1024 0.2048 0.170667 0.341333a35.6352 35.6352 0 1 0 63.3856-32.426667 61.303467 61.303467 0 0 1 12.6976-67.925333l95.744-95.709867a60.928 60.928 0 0 1 86.084267 0 60.928 60.928 0 0 1 0 86.084267l-35.6352 35.6352 0.238933 0.273067a35.601067 35.601067 0 1 0 49.595733 50.858666l0.068267 0.1024 36.352-36.352a132.3008 132.3008 0 0 0 0-186.948266z" fill="#e6e6e6" p-id="3263" data-spm-anchor-id="a313x.7781069.0.i52" class="selected"></path></svg>
+                                </span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">相关公司</span>
+                                    <span class="info-box-number">{{labelCounts.Company==undefined?0:labelCounts.Company}}</span>
+                                </div>
+                            </div>
+
+                            <div class="info-box mb-3 bg-warning" style="background-color: ;">
+                                <span class="info-box-icon">
+                                    <svg t="1686320874826" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3260" id="mx_n_1686320874827" width="40" height="40" data-spm-anchor-id="a313x.7781069.0.i57"><path d="M103.185067 510.634667c0 225.518933 182.784 408.302933 408.234666 408.302933 225.4848 0 408.2688-182.784 408.2688-408.2688S736.938667 102.4 511.453867 102.4C285.969067 102.4 103.185067 285.184 103.185067 510.634667z" fill="#dd6572" p-id="3261" data-spm-anchor-id="a313x.7781069.0.i50" class=""></path><path d="M605.7984 474.760533l-0.682667-1.570133c-0.1024-0.1024-0.1024-0.170667-0.2048-0.341333a35.6352 35.6352 0 1 0-63.3856 32.426666c9.898667 22.357333 5.563733 49.5616-12.6976 67.925334L433.186133 669.013333a60.928 60.928 0 0 1-86.084266 0 60.928 60.928 0 0 1 0-86.084266l35.6352-35.669334-0.238934-0.238933a35.601067 35.601067 0 1 0-49.5616-50.858667l-0.1024-0.1024-36.352 36.352a132.164267 132.164267 0 0 0 0 186.948267 132.164267 132.164267 0 0 0 186.948267 0l95.914667-95.914667a132.232533 132.232533 0 0 0 26.453333-148.6848z" fill="#dbdbdb" p-id="3262" data-spm-anchor-id="a313x.7781069.0.i51" class="selected"></path><path d="M731.4432 292.317867a132.164267 132.164267 0 0 0-186.948267 0l-95.914666 95.914666a132.232533 132.232533 0 0 0-26.5216 148.616534l0.682666 1.536c0.1024 0.1024 0.1024 0.2048 0.170667 0.341333a35.6352 35.6352 0 1 0 63.3856-32.426667 61.303467 61.303467 0 0 1 12.6976-67.925333l95.744-95.709867a60.928 60.928 0 0 1 86.084267 0 60.928 60.928 0 0 1 0 86.084267l-35.6352 35.6352 0.238933 0.273067a35.601067 35.601067 0 1 0 49.595733 50.858666l0.068267 0.1024 36.352-36.352a132.3008 132.3008 0 0 0 0-186.948266z" fill="#dbdbdb" p-id="3263" data-spm-anchor-id="a313x.7781069.0.i52" class="selected"></path></svg>
+                                </span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">相关人员</span>
+                                    <span class="info-box-number">{{labelCounts.Person==undefined?0:labelCounts.Person}}</span>
+                                </div>
+                            </div>
+                            <div class="info-box mb-3 bg-warning" style="background-color: ;">
+                                <span class="info-box-icon">
+                                    <svg t="1686320874826" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3260" id="mx_n_1686320874827" width="40" height="40"><path d="M103.185067 510.634667c0 225.518933 182.784 408.302933 408.234666 408.302933 225.4848 0 408.2688-182.784 408.2688-408.2688S736.938667 102.4 511.453867 102.4C285.969067 102.4 103.185067 285.184 103.185067 510.634667z" fill="#9DD8C8" p-id="3261" data-spm-anchor-id="a313x.7781069.0.i50" class=""></path><path d="M605.7984 474.760533l-0.682667-1.570133c-0.1024-0.1024-0.1024-0.170667-0.2048-0.341333a35.6352 35.6352 0 1 0-63.3856 32.426666c9.898667 22.357333 5.563733 49.5616-12.6976 67.925334L433.186133 669.013333a60.928 60.928 0 0 1-86.084266 0 60.928 60.928 0 0 1 0-86.084266l35.6352-35.669334-0.238934-0.238933a35.601067 35.601067 0 1 0-49.5616-50.858667l-0.1024-0.1024-36.352 36.352a132.164267 132.164267 0 0 0 0 186.948267 132.164267 132.164267 0 0 0 186.948267 0l95.914667-95.914667a132.232533 132.232533 0 0 0 26.453333-148.6848z" fill="#e6e6e6" p-id="3262" data-spm-anchor-id="a313x.7781069.0.i51" class=""></path><path d="M731.4432 292.317867a132.164267 132.164267 0 0 0-186.948267 0l-95.914666 95.914666a132.232533 132.232533 0 0 0-26.5216 148.616534l0.682666 1.536c0.1024 0.1024 0.1024 0.2048 0.170667 0.341333a35.6352 35.6352 0 1 0 63.3856-32.426667 61.303467 61.303467 0 0 1 12.6976-67.925333l95.744-95.709867a60.928 60.928 0 0 1 86.084267 0 60.928 60.928 0 0 1 0 86.084267l-35.6352 35.6352 0.238933 0.273067a35.601067 35.601067 0 1 0 49.595733 50.858666l0.068267 0.1024 36.352-36.352a132.3008 132.3008 0 0 0 0-186.948266z" fill="#e6e6e6" p-id="3263" data-spm-anchor-id="a313x.7781069.0.i52" class=""></path></svg>
+                                </span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">相关链接</span>
+                                    <span class="info-box-number">{{labelCounts.Downlink==undefined?0:labelCounts.Downlink}}</span>
+                                </div>
+                            </div>
+                            <div class="info-box mb-3 bg-warning" style="background-color: ;">
+                                <span class="info-box-icon">
+                                    <!-- <svg t="1686320874826" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3260" id="mx_n_1686320874827" width="40" height="40" data-spm-anchor-id="a313x.7781069.0.i57"><path d="M103.185067 510.634667c0 225.518933 182.784 408.302933 408.234666 408.302933 225.4848 0 408.2688-182.784 408.2688-408.2688S736.938667 102.4 511.453867 102.4C285.969067 102.4 103.185067 285.184 103.185067 510.634667z" fill="#FCE8AA" p-id="3261" data-spm-anchor-id="a313x.7781069.0.i50" class=""></path><path d="M605.7984 474.760533l-0.682667-1.570133c-0.1024-0.1024-0.1024-0.170667-0.2048-0.341333a35.6352 35.6352 0 1 0-63.3856 32.426666c9.898667 22.357333 5.563733 49.5616-12.6976 67.925334L433.186133 669.013333a60.928 60.928 0 0 1-86.084266 0 60.928 60.928 0 0 1 0-86.084266l35.6352-35.669334-0.238934-0.238933a35.601067 35.601067 0 1 0-49.5616-50.858667l-0.1024-0.1024-36.352 36.352a132.164267 132.164267 0 0 0 0 186.948267 132.164267 132.164267 0 0 0 186.948267 0l95.914667-95.914667a132.232533 132.232533 0 0 0 26.453333-148.6848z" fill="#cdcdcd" p-id="3262" data-spm-anchor-id="a313x.7781069.0.i51" class="selected"></path><path d="M731.4432 292.317867a132.164267 132.164267 0 0 0-186.948267 0l-95.914666 95.914666a132.232533 132.232533 0 0 0-26.5216 148.616534l0.682666 1.536c0.1024 0.1024 0.1024 0.2048 0.170667 0.341333a35.6352 35.6352 0 1 0 63.3856-32.426667 61.303467 61.303467 0 0 1 12.6976-67.925333l95.744-95.709867a60.928 60.928 0 0 1 86.084267 0 60.928 60.928 0 0 1 0 86.084267l-35.6352 35.6352 0.238933 0.273067a35.601067 35.601067 0 1 0 49.595733 50.858666l0.068267 0.1024 36.352-36.352a132.3008 132.3008 0 0 0 0-186.948266z" fill="#cdcdcd" p-id="3263" data-spm-anchor-id="a313x.7781069.0.i52" class="selected"></path></svg> -->
+                                    <svg t="1686410568485" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="3527" data-spm-anchor-id="a313x.7781069.0.i22" width="40" height="40"><path d="M103.185067 510.634667c0 225.518933 182.784 408.302933 408.234666 408.302933 225.4848 0 408.2688-182.784 408.2688-408.2688S736.938667 102.4 511.453867 102.4C285.969067 102.4 103.185067 285.184 103.185067 510.634667z" fill="#FFD95A" p-id="3528" data-spm-anchor-id="a313x.7781069.0.i18" class=""></path><path d="M605.7984 474.760533l-0.682667-1.570133c-0.1024-0.1024-0.1024-0.170667-0.2048-0.341333a35.6352 35.6352 0 1 0-63.3856 32.426666c9.898667 22.357333 5.563733 49.5616-12.6976 67.925334L433.186133 669.013333a60.928 60.928 0 0 1-86.084266 0 60.928 60.928 0 0 1 0-86.084266l35.6352-35.669334-0.238934-0.238933a35.601067 35.601067 0 1 0-49.5616-50.858667l-0.1024-0.1024-36.352 36.352a132.164267 132.164267 0 0 0 0 186.948267 132.164267 132.164267 0 0 0 186.948267 0l95.914667-95.914667a132.232533 132.232533 0 0 0 26.453333-148.6848z" fill="#bfbfbf" p-id="3529" data-spm-anchor-id="a313x.7781069.0.i19" class=""></path><path d="M731.4432 292.317867a132.164267 132.164267 0 0 0-186.948267 0l-95.914666 95.914666a132.232533 132.232533 0 0 0-26.5216 148.616534l0.682666 1.536c0.1024 0.1024 0.1024 0.2048 0.170667 0.341333a35.6352 35.6352 0 1 0 63.3856-32.426667 61.303467 61.303467 0 0 1 12.6976-67.925333l95.744-95.709867a60.928 60.928 0 0 1 86.084267 0 60.928 60.928 0 0 1 0 86.084267l-35.6352 35.6352 0.238933 0.273067a35.601067 35.601067 0 1 0 49.595733 50.858666l0.068267 0.1024 36.352-36.352a132.3008 132.3008 0 0 0 0-186.948266z" fill="#bfbfbf" p-id="3530" data-spm-anchor-id="a313x.7781069.0.i20" class=""></path></svg>    
+                                </span>
+                                <div class="info-box-content">
+                                    <span class="info-box-text">相关IP</span>
+                                    <span class="info-box-number">{{labelCounts.Ip==undefined?0:labelCounts.Ip}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="person-graph" style=""></div>
+                    </el-tab-pane>
+                    <!-- <el-tab-pane v-if="personInfo.companyList!=null" label="旗下公司" name="company">
+                        <div style="">
+                        <el-descriptions class="margin-top" :column="2" size="medium" border>
+                            <template slot="title" >
+                                <i class=" el-icon-user-solid" style="color:#C6C8C0" ></i> 
+                                <span style="color:#C6C8C0">公司溯源</span>
+                            </template>
+                        <el-descriptions-item label="主办单位名">
+                            <div class="null-text" v-if="personInfo.companyList[0].companyName==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].companyName}}</div>
+                        </el-descriptions-item>
+                        <el-descriptions-item label="单位性质">
+                            <div class="null-text" v-if="personInfo.companyList[0].companyType==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].companyType}}</div>
+                        </el-descriptions-item>
+                        <el-descriptions-item>
+                            <template slot="label">
+                            法定代表人
+                            </template>
+                            <div class="null-text" v-if="personInfo.personName==null">暂无</div>
+                            <el-tag v-else size="small" type="plain" style="border-color:purple;color: purple;">{{personInfo.personName}}</el-tag>
+                        </el-descriptions-item>
+                        
+                        <el-descriptions-item>
+                            <template slot="label">
+                            注册资本
+                            </template>
+                            <div class="null-text" v-if="personInfo.companyList[0].registerCapital==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].registerCapital}}</div>
+                        </el-descriptions-item>
+                
+                        <el-descriptions-item>
+                            <template slot="label">
+                            注册时间
+                            </template>
+                            <div class="null-text" v-if="personInfo.companyList[0].registerTime==null">暂无</div>
+                            <el-tag v-else size="small" type="plain" style="border-color:purple;color: purple;">{{personInfo.companyList[0].registerTime}}</el-tag>
+                        </el-descriptions-item>
+                
+                        <el-descriptions-item>
+                            <template slot="label">
+                            公司状态
+                            </template>
+                            <div class="null-text" v-if="personInfo.companyList[0].companyStatus==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].companyStatus}}</div>
+                        </el-descriptions-item>
+                        <el-descriptions-item>
+                            <template slot="label">
+                                公司类型
+                            </template>
+                            <div class="null-text" v-if="personInfo.companyList[0].companyType==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].companyType}}</div>
+                        </el-descriptions-item>
+                        <el-descriptions-item>
+                            <template slot="label">
+                                工商注册号
+                            </template>
+                            <div class="null-text" v-if="personInfo.companyList[0].registerNumber==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].registerNumber}}</div>
+                        </el-descriptions-item>
+                        <el-descriptions-item>
+                        <template slot="label">
+                            所属行业
+                        </template>
+                        <div class="null-text" v-if="personInfo.companyList[0].industry==null">暂无</div>
+                        <div v-else>{{personInfo.companyList[0].industry}}</div>
+                        </el-descriptions-item>
+                        <el-descriptions-item>
+                            <template slot="label">
+                                核准日期
+                            </template>
+                            <div class="null-text" v-if="personInfo.companyList[0].approvalDate==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].approvalDate}}</div>
+                        </el-descriptions-item>
+                        <el-descriptions-item>
+                            <template slot="label">
+                                注册地址
+                            </template>
+                            <div class="null-text" v-if="personInfo.companyList[0].registerAddress==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].registerAddress}}</div>
+                        </el-descriptions-item>
+                
+                        <el-descriptions-item>
+                            <template slot="label">
+                                经营范围
+                            </template>
+                            <div style="height:40px;overflow: hidden; /* 隐藏超出部分 */
+                            text-overflow: ellipsis; /* 以省略号显示超出部分 */
+                            white-space: nowrap; /* 不换行 */">
+                                <div class="null-text" v-if="personInfo.companyList[0].businessScope==null">暂无</div>
+                                <div v-else style="height:60px">{{personInfo.companyList[0].businessScope}}</div>
+
+                            </div>
+                            
+                        </el-descriptions-item>
+                
+                        </el-descriptions>
+                        </div>     
+                    </el-tab-pane> -->
+                    <el-tab-pane label="旗下资产" name="website">
+                        <template slot="label">
+                            <svg style="position: absolute;bottom:4;" t="1686317217411" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4988" width="31" height="31"><path d="M636.416 598.016c-17.408 0-33.792 6.656-45.568 17.92l-165.376-96.256c1.024-5.12 2.048-10.752 2.048-16.384s-1.024-11.264-2.048-16.384l163.84-95.744c12.288 11.776 29.184 18.944 47.104 18.944 38.4 0 69.632-31.232 69.632-69.632s-31.232-69.632-69.632-69.632-69.632 31.232-69.632 69.632c0 5.632 1.024 11.264 2.048 16.384l-163.84 95.744c-12.288-11.776-29.184-18.944-47.104-18.944-38.4 0-69.632 31.232-69.632 69.632s31.232 69.632 69.632 69.632c18.432 0 34.816-7.168 47.104-18.944l165.376 96.256c-1.024 5.12-2.048 9.728-2.048 15.36 0 37.376 30.208 67.584 67.584 67.584 37.376 0 67.584-30.208 67.584-67.584 0.512-37.376-29.696-67.584-67.072-67.584z" fill="#DCCBFF" p-id="4989"></path><path d="M729.088 655.872c-17.408 0-33.792 6.656-45.568 17.92l-165.376-96.256c1.024-5.12 2.048-10.752 2.048-16.384s-1.024-11.264-2.048-16.384l163.84-95.744c12.288 11.776 29.184 18.944 47.104 18.944 38.4 0 69.632-31.232 69.632-69.632s-31.232-69.632-69.632-69.632-69.632 31.232-69.632 69.632c0 5.632 1.024 11.264 2.048 16.384l-163.84 95.744C485.888 498.688 468.992 491.52 450.56 491.52c-38.4 0-69.632 31.232-69.632 69.632s31.232 69.632 69.632 69.632c18.432 0 34.816-7.168 47.104-18.944l165.376 96.256c-1.024 5.12-2.048 9.728-2.048 15.36 0 37.376 30.208 67.584 67.584 67.584 37.376 0 67.584-30.208 67.584-67.584s-29.696-67.584-67.072-67.584z" fill="#A87DFF" p-id="4990"></path><path d="M276.992 331.264h-29.696v-29.696c0-6.656-5.12-11.776-11.776-11.776-6.656 0-11.776 5.12-11.776 11.776v29.696H194.56c-6.656 0-11.776 5.12-11.776 11.776s5.12 11.776 11.776 11.776h29.696V384c0 6.656 5.12 11.776 11.776 11.776 6.656 0 11.776-5.12 11.776-11.776v-29.696h29.696c6.656 0 11.776-5.12 11.776-11.776s-6.144-11.264-12.288-11.264zM278.016 698.368c20.48 0 30.72 16.384 38.4 28.672 7.68 12.288 11.264 17.408 18.432 17.408 6.656 0 10.752-5.12 18.432-17.408 7.168-12.288 17.408-28.672 38.4-28.672 20.48 0 30.72 16.384 38.4 28.672 7.68 12.288 11.264 17.408 18.432 17.408 6.656 0 11.776 5.12 11.776 11.776 0 6.656-5.12 11.776-11.776 11.776-20.48 0-30.72-16.384-38.4-28.672-7.68-12.288-11.264-17.408-18.432-17.408-6.656 0-10.752 5.12-18.432 17.408-7.168 12.288-17.408 28.672-38.4 28.672-20.48 0-30.72-16.384-38.4-28.672-7.68-12.288-11.264-17.408-18.432-17.408s-10.752 5.632-18.432 17.408c-7.168 12.288-17.408 28.672-38.4 28.672-6.656 0-11.776-5.12-11.776-11.776 0-6.656 5.12-11.776 11.776-11.776 7.168 0 10.752-5.12 18.432-17.408 7.68-11.776 17.92-28.672 38.4-28.672z" fill="#EAB3FF" p-id="4991"></path><path d="M833.536 496.64h65.536v65.536h-65.536z" fill="#F7E2FF" p-id="4992"></path><path d="M157.184 575.488m-32.768 0a32.768 32.768 0 1 0 65.536 0 32.768 32.768 0 1 0-65.536 0Z" fill="#F7E2FF" p-id="4993"></path></svg>
+                            <span style="margin-left:34px;bottom:0;">旗下资产</span>
+                        </template>
+                        <div style="margin-top:20px;">
+                            <el-descriptions :column="3" size="medium" v-if="personInfo.companyList!=null">
+                                <template slot="title" >
+                                    <i class=" el-icon-user-solid" style="color:#D0B8FE" ></i> 
+                                    <span style="color:#D0B8FE"> 公司溯源</span>
+                                </template>
+                            <el-descriptions-item label="公司名称">
+                                <div class="null-text" v-if="personInfo.companyList[0].companyName==null">暂无</div>
+                                <div v-else><a-tag  color="#654E92">{{personInfo.companyList[0].companyName}}</a-tag></div>
+                            </el-descriptions-item>
+                            <el-descriptions-item label="单位性质">
+                                <div class="null-text" v-if="personInfo.companyList[0].companyType==null">暂无</div>
+                                <div v-else>{{personInfo.companyList[0].companyType}}</div>
+                            </el-descriptions-item>
+                            <el-descriptions-item>
+                                <template slot="label">
+                                注册资本
+                                </template>
+                                <div class="null-text" v-if="personInfo.companyList[0].registerCapital==null">暂无</div>
+                                <div v-else>{{personInfo.companyList[0].registerCapital}}</div>
+                            </el-descriptions-item>
                     
-                    <!-- 表格2：网站 -->
+                            <el-descriptions-item>
+                                <template slot="label">
+                                注册时间
+                                </template>
+                                <div class="null-text" v-if="personInfo.companyList[0].registerTime==null">暂无</div>
+                                {{personInfo.companyList[0].registerTime}}
+                            </el-descriptions-item>
                     
-                  </el-tab-pane>
-                  <el-tab-pane label="旗下网站" name="website">
+                            <el-descriptions-item>
+                                <template slot="label">
+                                公司状态
+                                </template>
+                                <div class="null-text" v-if="personInfo.companyList[0].companyStatus==null">暂无</div>
+                                <div v-else>{{personInfo.companyList[0].companyStatus}}</div>
+                            </el-descriptions-item>
+                            <el-descriptions-item>
+                                <template slot="label">
+                                    公司类型
+                                </template>
+                                <div class="null-text" v-if="personInfo.companyList[0].companyType==null">暂无</div>
+                                <div v-else>{{personInfo.companyList[0].companyType}}</div>
+                            </el-descriptions-item>
+                            <el-descriptions-item>
+                                <template slot="label">
+                                    工商注册号
+                                </template>
+                                <div class="null-text" v-if="personInfo.companyList[0].registerNumber==null">暂无</div>
+                                <div v-else>{{personInfo.companyList[0].registerNumber}}</div>
+                            </el-descriptions-item>
+                            <el-descriptions-item>
+                            <template slot="label">
+                                所属行业
+                            </template>
+                            <div class="null-text" v-if="personInfo.companyList[0].industry==null">暂无</div>
+                            <div v-else>{{personInfo.companyList[0].industry}}</div>
+                            </el-descriptions-item>
+                            <el-descriptions-item>
+                                <template slot="label">
+                                    核准日期
+                                </template>
+                                <div class="null-text" v-if="personInfo.companyList[0].approvalDate==null">暂无</div>
+                                <div v-else>{{personInfo.companyList[0].approvalDate}}</div>
+                            </el-descriptions-item>
+                            <el-descriptions-item>
+                                <template slot="label">
+                                    注册地址
+                                </template>
+                                <div class="null-text" v-if="personInfo.companyList[0].registerAddress==null">暂无</div>
+                                <div v-else>{{personInfo.companyList[0].registerAddress}}</div>
+                            </el-descriptions-item>
                     
-                  </el-tab-pane>
-                  <el-tab-pane label="Timeline" name="timeline">
-                    <timeline />
-                  </el-tab-pane>
-                  <el-tab-pane label="关系链" name="group">
-                    展示合作图谱？展示所在团伙情况，以及id，给予跳转到团伙详情的链接
-                    <div id="person-container"></div>
-                  </el-tab-pane>
+                            <!-- <el-descriptions-item>
+                                <template slot="label">
+                                    经营范围
+                                </template>
+                                <div style="height:80px;overflow: hidden; /* 隐藏超出部分 */
+                                text-overflow: ellipsis; /* 以省略号显示超出部分 */
+                                white-space: nowrap; /* 不换行 */">
+                                    <div class="null-text" v-if="personInfo.companyList[0].businessScope==null">暂无</div>
+                                    <div v-else style="height:60px">{{personInfo.companyList[0].businessScope}}</div>
+    
+                                </div>
+                                
+                            </el-descriptions-item> -->
+                    
+                            </el-descriptions>
+
+                            <div style="margin-top:20px;">
+                                <i class="el-icon-star-on" style="color:#D0B8FE" ></i> 
+                                <span style="color:#D0B8FE;font-size: 16px;font-weight: bold;"> 旗下网站</span>
+                                <div style="margin-top:20px;"  v-if="personInfo.companyList!=null && personInfo.companyList[0].siteList!=null"> 
+                                    <el-descriptions v-for="(item,index) in personInfo.companyList[0].siteList" :key="index"   :column="3" size="medium">
+                                        <el-descriptions-item label="URL">
+                                            <div><a-tag  color="#654E92">{{item.url}}</a-tag></div>
+                                            <a-tag v-if="item.isMalicious==true" color="rgb(166 13 13)">恶意网站</a-tag>
+                                            <a-tag v-else color="green">正常网站</a-tag>
+                                        </el-descriptions-item>
+                                        <el-descriptions-item label="网站ip">
+                                            <div>{{item.ip}}</div>
+                                        </el-descriptions-item>
+                                        <el-descriptions-item label="网站标题">
+                                            <div>{{item.siteTitle}}</div>
+                                        </el-descriptions-item>
+                                    </el-descriptions>
+                                </div>
+                            </div>
+                        </div>
+                    </el-tab-pane>
+                    <el-tab-pane label="" name="timeline">
+                        <template slot="label">
+                            <svg style="position: absolute;bottom:7;"  width="20" height="20" t="1686318208640" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2292"><path d="M1024 628.363636v279.272728H372.363636V628.363636h651.636364z m-69.818182 69.818182H442.181818v139.636364h512v-139.636364z m69.818182-581.818182v279.272728H372.363636V116.363636h651.636364z m-69.818182 69.818182H442.181818v139.636364h512V186.181818z" fill="#B1B2FF" p-id="2293" data-spm-anchor-id="a313x.7781069.0.i13" class="selected"></path><path d="M139.636364 395.636364A139.636364 139.636364 0 1 1 139.636364 116.363636a139.636364 139.636364 0 0 1 0 279.272728z m0 232.727272a139.636364 139.636364 0 1 1 0 279.272728 139.636364 139.636364 0 0 1 0-279.272728z" fill="#B1B2FF" p-id="2294" data-spm-anchor-id="a313x.7781069.0.i11" class="selected"></path><path d="M116.363636 395.636364h46.545455v232.727272H116.363636z" fill="#B1B2FF" p-id="2295" data-spm-anchor-id="a313x.7781069.0.i12" class="selected"></path></svg>
+                            <span style="margin-left:28px;bottom:0;">行为动态</span>
+                        </template>
+                        <timeline />
+                    </el-tab-pane>
                 </el-tabs>
               </el-card>
             </el-col>
     
           </el-row>
-
-       
-
-        <!-- <el-row>
-            <el-card>
-                人员信息（信用良好/）
-            </el-card>
-            <el-card>
-                旗下公司
-                <a-collapse v-model="activeKey">
-                    <a-collapse-panel key="1" header="This is panel header 1">
-                      <p>{{ text }}</p>
-                    </a-collapse-panel>
-                    <a-collapse-panel key="2" header="This is panel header 2" :disabled="false">
-                      <p>{{ text }}</p>
-                    </a-collapse-panel>
-                    <a-collapse-panel key="3" header="This is panel header 3" disabled>
-                      <p>{{ text }}</p>
-                    </a-collapse-panel>
-                  </a-collapse>
-            </el-card>
-            <el-card>
-                旗下网站:列表/善意/恶意占比，若恶意>善意：此人员旗下恶意下载网站多于正常网站，可能涉及xxxxx；此人员旗下网站均正常，信用良好；均恶意；
-
-            </el-card>
-
-        </el-row>
-
-        <el-row>
-            <el-card>
-                涉及团伙/合作链条
-            </el-card>
-            
-        </el-row> -->
     </div>
 </template>
 
@@ -186,11 +314,19 @@ export default {
     data() {
         return {
             text: `A dog is a type of domesticated animal.Known for its loyalty and faithfulness,it can be found as a welcome guest in many households across the world.`,
-            activeTab: 'company',
+            activeTab: 'group',
             personInfo:'',
             pid:'',
             graph:'',
             graphCanvas:'',
+            labelType:{
+                "Website":"网站",
+                "Company":"公司",
+                "Person":"人员",
+                "Ip":"IP",
+                "Downlink":"下载链接",
+            },
+            labelCounts:'',
         }
     },
     components:{
@@ -202,7 +338,7 @@ export default {
         activeTab(key) {
           console.log(key);
           if(key=="group"){
-            this.showGraph()
+            // this.showGraph()
           }
         },
     },
@@ -217,24 +353,46 @@ export default {
                 method:'get'
             }).then(res=>{
                 this.personInfo = res.data;
+                console.log(this.personInfo);
+                this.showGraph();
             })
         },
+        countGraphType(){
+            this.labelCounts = this.graph.nodes.reduce((acc, obj) => {
+                const label = obj.label;
+                acc[label] = (acc[label] || 0) + 1;
+                return acc;
+            }, {});
+            console.log(this.labelCounts);
+        },
         showGraph(depth=2){ //传入深度，默认为2度关系
-            const containerId = "person-container"
+            const containerId = "person-graph"
             const container = document.getElementById(containerId);
             const width = container.scrollWidth ||300;
-            const height = container.scrollHeight || 420; //TODO:原本为450，这里修改画布的高度
+            const height = container.scrollHeight || 385; //TODO:原本为420，这里修改画布的高度
             const canvasBackgroundColor = '#363B40';
-            const darkBackColor = '#2B384E'; //TODO:这里修改节点的背景颜色 原本rgb(43, 47, 51)
+            const darkBackColor = '#363B40'; //TODO:这里修改节点的背景颜色 原本rgb(43, 47, 51)
             container.style.backgroundColor = canvasBackgroundColor; //TODO:背景颜色?
             const nodeSize = 25;
             const nodeIconSize = 25;
             const realEdgeOpacity = 0.4;
+            // box-shadow: rgb(174, 174, 174) 0px 0px 10px; padding: 0px 10px 24px 10px;
             insertCss(`
             .g6-component-tooltip {
-                background-color: rgba(255, 255, 255, 0.8);
-                padding: 0px 10px 24px 10px;
-                box-shadow: rgb(174, 174, 174) 0px 0px 10px;
+                background-color: #363b40; 
+                padding: 0px 20px 0px 20px;
+                border-radius: 6px;
+                color: hsla(0,0%,100%,.85);
+                transition: opacity .2s;
+                box-shadow: 0 5px 18px 0 rgba(0, 0, 0, 0.6);
+                border: 0px;
+            }
+            .g6-component-tooltip li {
+                cursor: pointer;
+                list-style-type: none;
+                list-style: none;
+                margin-left: 0;
+                line-height: 38px;
             }
             .g6-component-contextmenu {
                 position: absolute;
@@ -280,14 +438,14 @@ export default {
                 //TODO:调用图谱统计方法
                 this.graph = data;
                 console.log(this.graph)
-
+                this.countGraphType();
                 const subjectColors = [
                     '#5F95FF', // blue
                     '#61DDAA',
                     // '#65789B',
                     '#F6BD16',
                     '#9661BC', //purple
-                    '#78D3F8',
+                    '#C9CCD5', //blue
                     // '#9661BC',
                     '#F6903D',
                     '#008685',
@@ -311,8 +469,8 @@ export default {
                 // this.showSanky(data.edges);
 
                 //3、分类
-                const clusterNode = ["Website","Company","Person","Ip","Redirect"];
-                const clusterEdge = ["BELONGS_TO","DOWNLOAD_FROM","HAS_IP","HAS_COMPANY","SIMILAR_TO"];
+                const clusterNode = ["Website","Company","Person","Ip","Downlink"];
+                const clusterEdge = ["BELONGS_TO","DOWN_FROM","HAS_IP","HAS_COMPANY","SIMILAR_TO","CONNECT"];
                 // const clusterNode = ["Domain","Company","Person","Ip","Cert"];
                 data.nodes.forEach(function (node) {
                     const cid = clusterNode.indexOf(node.label);
@@ -324,8 +482,13 @@ export default {
                         show:true,
                         img:require("@/assets/nodes/"+node.label+".png"),
                     };
-                    node.style.fill = "#2B384E";   //colorSets[cid].mainStroke; 
-                    node.style.stroke = "#2B384E";//colorSets[cid].mainStroke; 
+                    if(node.label=="Website"){
+                        if(node.properties["Is_bad"]==true){
+                            node.icon.img = require("@/assets/nodes/Malsite.png");
+                        }
+                    }
+                    node.style.fill = darkBackColor;   //colorSets[cid].mainStroke; 
+                    node.style.stroke = darkBackColor;//colorSets[cid].mainStroke; 
                 });
                 
                 // const clusterEdge = ["IS_SUB","FOUNDED_BY","HAS_IP","WORKS_FOR","HAS_CERT"];
@@ -437,33 +600,22 @@ export default {
                         const outDiv = document.createElement('div');
                         outDiv.style.width = 'fit-content';
                         //outDiv.style.padding = '0px 0px 20px 0px';
-                        // <ul>
-                        //     <li>节点类型:${e.item.getType()}</li>
-                        // </ul>
                         if(e.item.getType()=="node"){
                             outDiv.innerHTML = `
-                            <h4>节点信息</h4>
-                            <ul>
-                                <li>节点类型:<button style="font-weight: bold;"> ${e.item.getModel().label}</button></li>
-                            </ul>
-                            <ul>
-                                <li>节点名称: ${e.item.getModel().properties["name"] || e.item.getModel().id}</li>
-                            </ul>
-                            <ul>
-                                <li>PageRank: ${result[e.item.getModel().id]}</li>
-                            </ul>
-                        `;
-                        }
-                        else if(e.item.getType()=="edge"){
-                            outDiv.innerHTML = `
-                                <h4>边信息</h4>
-                                <ul>
-                                    
-                                    <li>边类型:<button style="font-weight: bold;"> ${e.item.getModel().label}</button></li>
-                                </ul>
+                                <li>${this.labelType[e.item.getModel().label]}名称: ${e.item.getModel().properties["name"] || e.item.getModel().id}</li>
                             `;
+                            return outDiv;
                         }
-                        return outDiv;
+                        // else if(e.item.getType()=="edge"){
+                        //     outDiv.innerHTML = `
+                        //         <h4>边信息</h4>
+                        //         <ul>
+                                    
+                        //             <li>边类型:<button style="font-weight: bold;"> ${e.item.getModel().label}</button></li>
+                        //         </ul>
+                        //     `;
+                        // }
+                        // return outDiv;
                     },
                 });
                 let hiddenItemIds = []; // 隐藏的元素 id 数组
@@ -565,13 +717,13 @@ export default {
                     getContent(evt) {
                         const { item } = evt;
                         let header;
-                        if (evt.target && evt.target.isCanvas && evt.target.isCanvas()) { //右键画布
-                            return `<ul>
-                            <li id='show'>显示全部隐藏节点</li>
-                            <li id='collapseAll'>Collapse all Clusters</li>
-                            </ul>`;
-                        } 
-                        else if (!item) return;
+                        // if (evt.target && evt.target.isCanvas && evt.target.isCanvas()) { //右键画布
+                        //     return `<ul>
+                        //     <li id='show'>显示全部隐藏节点</li>
+                        //     <li id='collapseAll'>Collapse all Clusters</li>
+                        //     </ul>`;
+                        // } 
+                        // else if (!item) return;
                         const itemType = item.getType();
                         const model = item.getModel();
                         if (itemType && model) {
@@ -700,8 +852,8 @@ export default {
                         linkDistance: 180, //边的长度 180
                         preventOverlap: true,
                         nodeStrength: -170,  //节点的引力，负数代表斥力
-                        center: [ 500, 200 ],     // 可选，默认为图的中心
-                        // center: [width / 2, height / 2],
+                        // center: [ 500, 200 ],     // 可选，默认为图的中心
+                        center: [width / 2, height / 2],
                     },
                     defaultNode: {
                         size: nodeSize,
@@ -766,7 +918,7 @@ export default {
                     animate: true,
                     // 设置为true，启用 redo & undo 栈功能
                     enabledStack: true,
-                    plugins: [legend,tooltip,contextMenu],
+                    plugins: [contextMenu,tooltip],
                 });
                 this.graphCanvas = graph;
   
@@ -821,9 +973,23 @@ export default {
             model.fy = e.y;
             }
         },
+        noMoreInfo() {
+            this.$notify({
+            title: '检索成功',
+            message: '该节点暂无更多关联信息',
+            type: 'success'
+            });
+        },
+        haveMoreInfo(nodeCount,edgeCount){
+            this.$notify({
+            title: '检索成功',
+            message: '共查到新的节点'+nodeCount+"个,新的关系"+edgeCount+"个",
+            type: 'success'
+            });
+        }
     },
     mounted(){
-        this.getPersonInfo()
+        
     }
 }
 </script>
@@ -849,5 +1015,71 @@ color:#a1a0a1;
 /deep/.el-descriptions--medium.is-bordered .el-descriptions-item__cell {
   background-color: #3c3a3a;
   color: white;
+}
+</style>
+
+<style scoped>
+.info-box {
+    float: left;
+    box-shadow: 0 0 1px rgba(0,0,0,.125),0 1px 3px rgba(0,0,0,.2);
+    border-radius: .25rem;
+    display: -ms-flexbox;
+    display: flex;
+    margin-bottom: 1rem;
+    min-height: 80px;
+    padding: .5rem;
+    position: relative;
+    width: 180px;
+}
+.info-box .info-box-icon {
+    /* border-radius: .25rem; */
+    -ms-flex-align: center;
+    align-items: center;
+    display: -ms-flexbox;
+    display: flex;
+    font-size: 1.875rem;
+    -ms-flex-pack: center;
+    justify-content: center;
+    text-align: center;
+    width: 50px;
+}
+
+.info-box .info-box-content {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    -ms-flex-pack: center;
+    justify-content: center;
+    line-height: 1.8;
+    -ms-flex: 1;
+    flex: 1;
+    padding: 0 10px;
+    overflow: hidden;
+}
+
+.info-box .info-box-text, .info-box .progress-description {
+    display: block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.info-box .info-box-number {
+    display: block;
+    margin-top: .25rem;
+    font-weight: 700;
+}
+</style>
+
+<style scoped>
+/deep/.el-descriptions {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    font-size: 14px;
+    color: #9ea0a2;
+}
+/deep/.el-descriptions__body {
+    color: #9ea6b5;
+    background-color: #343A40;
 }
 </style>

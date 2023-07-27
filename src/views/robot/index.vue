@@ -1,5 +1,5 @@
 <template>
-    <div style="padding:20px;">
+    <div style="padding:20px;height:100%">
         <el-row :gutter="20">
             <el-col :span="12">
                 <div style="border-radius:14px;height:625px;border: 1px solid #fff;padding:15px;">
@@ -71,13 +71,13 @@ export default {
             const input = this.input;
             this.input = '';
             this.add("right",input);
-            // this.scrollToBottom();
             this.add("left","ChatRobot正在为您检索中,请稍后。😊");
-            // this.scrollToBottom();
             //我想查询http://www.pc9.com网站的关系图谱
             // const data = {input:'我想查询http://tool.52jscn.com网站的关系图谱'} 
-            const data = {input:input}
-            axios.post("http://127.0.0.1:5000/a", data,{headers: {
+            const data = {input:input};
+            const localUrl = "http://127.0.0.1:5000/a";
+            const url = "http://10.134.160.151:5000/a";
+            axios.post( localUrl, data,{headers: {
                 'Content-Type': 'application/json'
             }})
             .then(res=>{
@@ -246,8 +246,8 @@ export default {
             );
 
             //3、分类
-            const clusterNode = ["Website","Company","Person","Ip","Redirect"];
-            const clusterEdge = ["BELONGS_TO","DOWNLOAD_FROM","HAS_IP","HAS_COMPANY","SIMILAR_TO"];
+            const clusterNode = ["Website","Company","Person","Ip","Downlink"];
+            const clusterEdge = ["BELONGS_TO","DOWN_FROM","HAS_IP","HAS_COMPANY","SIMILAR_TO"];
             // const clusterNode = ["Domain","Company","Person","Ip","Cert"];
             data.nodes.forEach(function (node) {
                 const cid = clusterNode.indexOf(node.label[0]);

@@ -18,8 +18,7 @@
 
     <el-table-column prop="is_malicious" label="类型">
         <template slot-scope="{row}">
-          <el-tag v-if="row.is_malicious===true" type="danger">恶意网站</el-tag>
-          <el-tag v-else  type="success">正常网站</el-tag>
+          <a-tag  color="rgb(166 13 13)">恶意网站</a-tag>
         </template>
     </el-table-column>
   </el-table>

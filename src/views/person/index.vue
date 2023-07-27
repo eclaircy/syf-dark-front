@@ -21,16 +21,11 @@
               <template slot="prepend">网站</template>
           </el-input>
           
-          <el-button size="medium" type="primary" @click="Search()">查询   <i class="el-icon-search"></i></el-button>
+          <el-button size="medium" type="primary" @click="searchPerson()">查询<i class="el-icon-search"></i></el-button>
           <el-button size="medium" type="primary" @click="handleClear()">清空线索</el-button>
         </div>
 
         <el-row>
-          <!-- <el-col :span="5">
-              <div class="search-charts-container"> 
-                最近新增人员；拥有恶意网站最多的可疑人员；
-              </div>
-          </el-col> -->
           <el-col :span="19"> 
             <person-simple-card :personInfoByPage="personInfoByPage.records"></person-simple-card>
                   <!-- <SiteSimpleCard :sitesInfoByPage="sitesInfoByPage.records"/> -->
@@ -92,10 +87,11 @@ export default {
     data(){
         return{
           personInfoByPage:[],
+          emptySerchCondition:false,
           search:{
-            input1:'',
-            input2:'',
-            input3:'',
+            input1:'', // 人员
+            input2:'', // 公司
+            input3:'', // 网站
           },
           paginations:{
               currentPage: 1,
@@ -142,12 +138,34 @@ export default {
         },
         handleCurrentChange(val) { //当前页val
             this.paginations.currentPage=val;
-            this.getPerson();
+            // this.getPerson();
+            if(this.emptySerchCondition==true){
+              this.getPerson();
+            }else{
+
+            }
+            
             // console.log(`当前页: ${val}`);
         },
         handleClear(){
           for (let key in this.search) {
             this.search[key]="";
+          }
+          this.emptySerchCondition=true;
+        },
+        searchPerson(){
+          // "/person/search?size=8&page=1&url=&personName=许&companyName="
+          if(this.emptySerchCondition==true){
+            this.getPerson()
+          }else{
+            this.paginations.currentPage=1;
+            this.axios({
+              method:"get",
+              url:"api/person/search?size=8&"+"page=1&"+"url="+this.search.input3+"&personName="+this.search.input1+"&companyName="+this.search.input2
+            }).then(res=>{
+              this.personInfoByPage=res.data;
+              this.paginations.totalPage=res.data.total;
+            })          
           }
         }
     },

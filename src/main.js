@@ -20,11 +20,18 @@ import 'element-theme-dark';
 
 
 import 'ant-design-vue/dist/antd.css';
-import { Button, Timeline,List,Avatar,Table,Collapse,Badge,Input } from "ant-design-vue";
-Vue.use(Button).use(Timeline).use(List).use(Avatar).use(Table).use(Collapse).use(Badge).use(Input)
+import { Button, Timeline,List,Avatar,Table,Collapse,Badge,Input,Tag } from "ant-design-vue";
+Vue.use(Button).use(Timeline).use(List).use(Avatar).use(Table).use(Collapse).use(Badge).use(Input).use(Tag);
+
 
 import VueParticles from 'vue-particles'  
 Vue.use(VueParticles)  
+
+
+
+// 将自动注册所有组件为全局组件
+import dataV from '@jiaminghi/data-view'
+Vue.use(dataV)
 
 
 

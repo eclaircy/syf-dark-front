@@ -24,7 +24,7 @@
       </el-col>
       <el-col :span="8">
         <el-card class="el-card" style="height:410px">
-          <div class="card-title" style="margin-bottom:5px">占据比例</div>
+          <div class="card-title" style="margin-bottom:5px">比例统计</div>
           <PieChart/>
         </el-card>
       </el-col>
@@ -66,7 +66,7 @@
         <el-card style="height:450px">
           <el-carousel height="430px">
             <el-carousel-item>
-            <div class="card-title">最新检测网站</div>  
+            <div class="card-title">新增恶意网站预警</div>  
             <NewSiteTable/>
             </el-carousel-item>
 

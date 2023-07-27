@@ -1,79 +1,104 @@
 <template>
-  <div class="login-container">
-    <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
+  <div class="login-container" :style="{ backgroundImage: 'url(' + bg + ')' }" >
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal"  @select="handleSelect">
+      <el-menu-item index="4"><a href="https://www.ele.me" target="_blank">插件</a></el-menu-item>
+      <el-menu-item index="1">登录</el-menu-item>
+      <el-menu-item  index="2" hidden>注册</el-menu-item >
+      
+    </el-menu>
 
-      <div class="title-container">
-        <h3 class="title">Login Form</h3>
-      </div>
-
-      <el-form-item prop="username">
-        <span class="svg-container">
-          <svg-icon icon-class="user" />
-        </span>
-        <el-input
-          ref="username"
-          v-model="loginForm.username"
-          placeholder="Username"
-          name="username"
-          type="text"
-          tabindex="1"
-          autocomplete="on"
-        />
-      </el-form-item>
-
-      <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
-        <el-form-item prop="password">
-          <span class="svg-container">
-            <svg-icon icon-class="password" />
-          </span>
-          <el-input
-            :key="passwordType"
-            ref="password"
-            v-model="loginForm.password"
-            :type="passwordType"
-            placeholder="Password"
-            name="password"
-            tabindex="2"
-            autocomplete="on"
-            @keyup.native="checkCapslock"
-            @blur="capsTooltip = false"
-            @keyup.enter.native="handleLogin"
-          />
-          <span class="show-pwd" @click="showPwd">
-            <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
-          </span>
-        </el-form-item>
-      </el-tooltip>
-
-      <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;" @click.native.prevent="handleLogin">Login</el-button>
-      <!-- filter:invert(1) hue-rotate(180deg) -->
-      <ParticleEffectButton 
-          :visible.sync="btnOps.visible" :animating.sync="btnOps.animating" :options="btnOps" cls="btn-cls" style="">
-        Login
-      </ParticleEffectButton>
-      <div style="position:relative">
-        <!-- <div class="tips">
-          <span>Username : admin</span>
-          <span>Password : any</span>
+    <el-main>
+      <div v-if="activeIndex === '1'">
+        <div style="text-align:center;">
+          <div style="font-size:40px;color:white;font-family: SimSun;margin-top:80px;">软件下载网站检测与追踪溯源平台</div>
         </div>
-        <div class="tips">
-          <span style="margin-right:18px;">Username : editor</span>
-          <span>Password : any</span>
-        </div> -->
-
-        <!-- <el-button class="thirdparty-button" type="primary" @click="showDialog=true">
-          Or connect with
-        </el-button> -->
+        <dv-border-box-11 title="Rouge Killer" style="font-family:Times New Roman;height:380px;width:580px;z-index:0;position: absolute;margin: 30px 459px;"></dv-border-box-11>
+        <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" autocomplete="on" label-position="left">
+          <div style="margin-bottom: 80px;" >
+            <!-- <h3 class="title">Login </h3> -->
+          </div>
+          <el-form-item prop="username">
+            <span class="svg-container">
+              <svg-icon icon-class="user" />
+            </span>
+            <el-input
+              ref="username"
+              v-model="loginForm.username"
+              placeholder="Username or Email"
+              name="username"
+              type="text"
+              tabindex="1"
+              autocomplete="on"
+            />
+          </el-form-item>
+          <el-tooltip v-model="capsTooltip" content="Caps lock is On" placement="right" manual>
+            <el-form-item prop="password">
+              <span class="svg-container">
+                <svg-icon icon-class="password" />
+              </span>
+              <el-input
+                :key="passwordType"
+                ref="password"
+                v-model="loginForm.password"
+                :type="passwordType"
+                placeholder="Password"
+                name="password"
+                tabindex="2"
+                autocomplete="on"
+                @keyup.native="checkCapslock"
+                @blur="capsTooltip = false"
+                @keyup.enter.native="handleLogin"
+              />
+              <span class="show-pwd" @click="showPwd">
+                <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+              </span>
+            </el-form-item>
+          </el-tooltip>
+          <ParticleEffectButton :loading="loading"    @click.native.prevent="handleLogin"
+              :visible.sync="btnOps.visible" :animating.sync="btnOps.animating" :options="btnOps" cls="btn-cls" style="">
+              <span style="font-family:Times New Roman;margin-left: -16px;margin-top: -11px; z-index: 2;font-size: larger; position: absolute;">Login</span>
+          </ParticleEffectButton>
+          <div style="float:right;font-weight:500;margin-top:20px;">
+            <el-link type="primary" @click="showRegister"><span style="color:#b1b8be">New User? </span>Sign up</el-link>
+          </div>
+        </el-form>
       </div>
-    </el-form>
+      <div v-if="activeIndex === '2'">
+        <div style="text-align:center;">
+          <div style="font-size:40px;color:white;font-family: SimSun;margin-top:80px;">软件下载网站检测与追踪溯源平台</div>
+        </div>
+        <dv-border-box-11 title="Rouge Killer" style="font-family:Times New Roman;height:380px;width:580px;z-index:0;position: absolute;margin: 30px 459px;"></dv-border-box-11>
+        <el-form ref="registerForm" :model="registerForm" :rules="registerRules" class="login-form" label-position="left">
+          <div style="margin-bottom: 65px;" >
+          </div>
 
-    <el-dialog title="Or connect with" :visible.sync="showDialog">
-      Can not be simulated on local, so please combine you own business simulation! ! !
-      <br>
-      <br>
-      <br>
-      <social-sign />
-    </el-dialog>
+          <el-form-item prop="username">
+            <span class="svg-container"> <svg-icon icon-class="user" /> </span>
+            <el-input ref="username" v-model="registerForm.username" placeholder="Username"  type="text" tabindex="1" />
+          </el-form-item>
+         
+          <el-form-item prop="password">
+            <span class="svg-container"> <svg-icon icon-class="password" /> </span>
+            <el-input  :key="passwordType" ref="password" v-model="registerForm.password" :type="passwordType"
+              placeholder="Password"  name="password"  tabindex="2"/>
+            <span class="show-pwd" @click="showPwd">
+              <svg-icon :icon-class="passwordType === 'password' ? 'eye' : 'eye-open'" />
+            </span>
+          </el-form-item>
+
+          <el-form-item prop="email">
+            <span class="svg-container">   <svg-icon icon-class="email" />  </span>
+            <el-input ref="email" v-model="registerForm.email" placeholder="Email" name="email" type="text" tabindex="3"/>
+          </el-form-item>
+
+          <div style="font-weight:500;margin-top:20px;">
+            <el-button @click="handleRegister" style="float:right;">Register</el-button>
+            <el-link style="float:left;" type="primary" @click="showLogin"><span style="color:#b1b8be">Already have account? </span>Sign in</el-link>
+          </div>
+        </el-form>
+      </div>
+      
+    </el-main>
   </div>
 </template>
 
@@ -81,6 +106,7 @@
 import { validUsername } from '@/utils/validate'
 import SocialSign from './components/SocialSignin'
 import ParticleEffectButton from "vue-particle-effect-buttons"
+
 
 export default {
   name: 'Login',
@@ -95,19 +121,20 @@ export default {
     }
     const validatePassword = (rule, value, callback) => {
       if (value.length < 6) {
-        callback(new Error('The password can not be less than 6 digits'))
+        callback(new Error('密码长度不能少于6位数'))
       } else {
         callback()
       }
     }
     return {
+      activeIndex: '1',
       loginForm: {
-        username: 'admin',
-        password: '111111'
+        username: '',
+        password: ''
       },
       loginRules: {
-        username: [{ required: true, trigger: 'blur', validator: validateUsername }],
-        password: [{ required: true, trigger: 'blur', validator: validatePassword }]
+        username: [{ required: true, trigger: 'blur', }],
+        password: [{ required: true, trigger: 'blur' }]
       },
       passwordType: 'password',
       capsTooltip: false,
@@ -115,28 +142,41 @@ export default {
       showDialog: false,
       redirect: undefined,
       otherQuery: {},
-      btnOps:   
-      // {
-      //   style: "stroke",
-      //   color: "#1b81ea !important",
-      //   direction: "bottom",
-      //   duration: 1200,
-      //   easing: "easeOutSine",
-      //   speed: 0.7,
-      //   oscillationCoefficient: 5,
-      //   label: "Register"
-      // },
-      {
-            type: "triangle",
-            easing: "easeOutQuart",
-            size: 6,
-            particlesAmountCoefficient: 4,
-            oscillationCoefficient: 2,
-            color: function() {
-                return Math.random() < 0.5 ? "#000000" : "#ffffff";
-            },
-            label: "Upload"
-        },
+      btnOps: {
+          type: "triangle",
+          easing: "easeOutQuart",
+          size: 6,
+          particlesAmountCoefficient: 4,
+          oscillationCoefficient: 2,
+          color: function() {
+              return Math.random() < 0.5 ? "#000000" : "#ffffff";
+          },
+          onComplete: () => {
+            console.log("complete");
+          },
+          onBegin: () => {
+            console.log("begin");
+          },
+          visible: true,
+          animating: false
+      },
+      bg: require('@/assets/bg/bg.jpg'),
+      registerForm:{
+        username: '',
+        email: '',
+        password: '',
+        role:'',
+      },
+      registerRules:{
+        username: [{ required: true, trigger: 'blur', message: '请输入用户名',}],
+        password: [{ required: true, trigger: 'blur', validator: validatePassword }],
+        email: [{ required: true, message: '请输入邮箱地址', trigger: 'blur' },
+                { type: 'email', message: '请输入正确的邮箱地址', trigger: ['blur'] }],
+      },
+      roleType:{
+        "2":"执法人员",
+        "3":"普通用户",
+      }
     }
   },
   watch: {
@@ -149,6 +189,12 @@ export default {
         }
       },
       immediate: true
+    },
+    activeIndex(newVal,oldVal){
+      if(newVal == '2'){
+        this.$refs["registerForm"].resetFields();
+        this.$refs["registerForm"].clearValidate();
+      }
     }
   },
   created() {
@@ -165,6 +211,16 @@ export default {
     // window.removeEventListener('storage', this.afterQRScan)
   },
   methods: {
+    handleSelect(index) {
+      this.activeIndex = index;
+      // 在这里你可以根据需要进行其他的处理逻辑
+    },
+    showRegister(){
+      this.activeIndex = '2';
+    },
+    showLogin(){
+      this.activeIndex = '1';
+    },
     checkCapslock(e) {
       const { key } = e
       this.capsTooltip = key && key.length === 1 && (key >= 'A' && key <= 'Z')
@@ -183,14 +239,62 @@ export default {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
           this.loading = true
+          // let fd = new FormData()
+          // fd.append("username", this.loginForm.username)
+          // fd.append("password", this.loginForm.password)
+          // this.axios.post('http://127.0.0.1:8888/user/login', fd,{ headers: {'Content-Type': 'multipart/form-data'}})
+          // .then(res => {
+          //   if(res.data==true){ //login success
+          //       this.$message({
+          //         message: ' 登录成功',
+          //         type: 'success'
+          //       });
+          //       setTimeout(() => {
+          //         this.$router.push({ path: this.redirect || '/dashboard', query: this.otherQuery })
+          //         this.loading = false
+          //       }, 1 * 1000)
+          //   }else{
+          //     this.loading = false
+          //     this.$message.error('登陆失败，用户名密码不匹配');
+          //     setTimeout(() => {
+          //       this.btnOps.visible = !this.btnOps.visible;
+          //     }, 2.5 * 1000)
+          //   } 
+          // })
+
+
           this.$store.dispatch('user/login', this.loginForm)
             .then(() => {
-              this.$router.push({ path: this.redirect || '/dashboard', query: this.otherQuery })
-              this.loading = false
+              this.$message({
+                message: ' 登录成功',
+                type: 'success'
+              });
+              setTimeout(() => {
+                this.$router.push({ path: this.redirect || '/dashboard', query: this.otherQuery })
+                this.loading = false
+              }, 1 * 1000)
             })
             .catch(() => {
               this.loading = false
             })
+        } else {
+          this.$message.error('登陆失败，请正确填写表单');
+          // wait until this.btnOps.animating is false then set this.btnOps.visible to true
+          setTimeout(() => {
+            this.btnOps.visible = !this.btnOps.visible;
+          }, 2.5 * 1000)
+          
+          return false
+        }
+      })
+    },
+    handleRegister(){
+      this.$refs.registerForm.validate(valid => {
+        if (valid) {
+            this.$message({
+              message: '账号注册成功',
+              type: 'success'
+            });
         } else {
           console.log('error submit!!')
           return false
@@ -282,14 +386,15 @@ $light_gray:#eee;
 .login-container {
   min-height: 100%;
   width: 100%;
-  background-color: $bg;
+
   overflow: hidden;
+  background-size:100% 100%;
 
   .login-form {
     position: relative;
     width: 520px;
     max-width: 100%;
-    padding: 160px 35px 0;
+    padding: 50px 40px 0;
     margin: 0 auto;
     overflow: hidden;
   }
@@ -350,11 +455,26 @@ $light_gray:#eee;
 }
 
 </style>
+
 <style scoped>
 /deep/.vue-particle-effect-button .particles-button {
-  background: #f1f1f4;
-  width:400px;
+  background: #f1f1f47d;
+  width:438.4px;
   height:40px;
-  color: #fff;
+  color: #4545f37d;
+  text-align: center;
+}
+
+/deep/.el-menu {
+  background-color: transparent;
+}
+/deep/.el-menu.el-menu--horizontal {
+  border-bottom: transparent; 
+}
+/deep/.el-menu > .el-menu-item {
+  float: right;
+}
+/deep/.el-menu > .el-menu-item:hover {
+  background-color: transparent;
 }
 </style>

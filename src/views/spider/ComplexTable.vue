@@ -1,32 +1,40 @@
 <template>
     <div class="app-container" style="height:770px;">
       <el-row>
-        <el-card>我的任务：8个，已完成，未完成</el-card>
-      </el-row>
+        <el-card >
+             <div style="font-size: 20px;margin-bottom: 7px;">检测任务配置</div>
+             <!-- <span>人员画像，介绍xxxxx</span> -->
+        </el-card>
+    </el-row>
 
       <div class="filter-container">
-        <el-input v-model="listQuery.title" placeholder="任务标题" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />   
-        <el-select v-model="listQuery.status" placeholder="任务状态" clearable class="filter-item" style="width: 150px">
-            <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key" />
-        </el-select>
-        <el-select v-model="listQuery.importance" placeholder="任务重要性" clearable style="width: 130px" class="filter-item">
-          <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
-        </el-select>
+        <div style="margin-left:20px;">
+          <el-input v-model="listQuery.title" placeholder="任务标题" style="width: 200px;" class="filter-item" @keyup.enter.native="handleFilter" />   
+          <el-select v-model="listQuery.status" placeholder="任务状态" clearable class="filter-item" style="width: 150px">
+              <el-option v-for="item in statusType" :key="item.key" :label="item.display_name" :value="item.key" />
+          </el-select>
+          <el-select v-model="listQuery.importance" placeholder="任务重要性" clearable style="width: 130px" class="filter-item">
+            <el-option v-for="item in importanceOptions" :key="item" :label="item" :value="item" />
+          </el-select>
 
-        <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
-          搜索
-        </el-button>
-        <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">
-          新增检测任务
-        </el-button>
-        <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
-          导出
-        </el-button>
+          <el-button v-waves class="filter-item" type="primary" icon="el-icon-search" @click="handleFilter">
+            搜索
+          </el-button>
+          <el-button class="filter-item" type="primary" icon="el-icon-edit" @click="handleCreate">
+            新增检测任务
+          </el-button>
+          <el-button v-waves :loading="downloadLoading" class="filter-item" type="primary" icon="el-icon-download" @click="handleDownload">
+            导出
+          </el-button>
+        </div>
       </div>
 
       <el-table
+        v-loading="loading"
+        element-loading-text="Loading"
+        element-loading-spinner="el-icon-loading"
+        element-loading-background="#343A40"
         :key="tableKey"
-        v-loading="listLoading"
         :data="list"
         border
         fit
@@ -171,7 +179,7 @@
         tableKey: 0,
         list: null,
         total: 0,
-        listLoading: true,
+        loading: true,
         listQuery: {
           page: 1,
           limit: 10,
@@ -202,7 +210,7 @@
           id: undefined,
           importance: 1,
           remark: '',
-          timestamp: new Date(),
+          timestamp: '',
           title: '',
           type: '',
           status: 'published'
@@ -229,27 +237,30 @@
     },
     methods: {
       getList() {
-        this.listLoading = true
+        this.loading = true
         fetchList(this.listQuery).then(response => {
           this.list = response.data.items
           this.total = response.data.total
-          this.listLoading = false
+          this.loading = false
         })
       },
       getAllTask(){
-        this.listLoading = true
-
+        this.loading = true
         this.axios({
                 url:"api/detect-task/all?limit=10&"+"page="+this.listQuery.page,
                 method:'get'
         }).then(res=>{
-            this.list = res.data.records;
+            this.list = res.data.records.sort(function(a, b) {
+              var dateA = new Date(a.date);
+              var dateB = new Date(b.date);
+              return dateB - dateA; // 从大到小排序
+            });
+            console.log(this.list);
+            // this.list = res.data.records;
             this.total=res.data.total;
-            this.listLoading = false
-            console.log(res.data);
-            
+            this.loading = false            
         })
-        this.listLoading = false
+        this.loading = false
       },
       handleFilter() {
         this.listQuery.page = 1
@@ -298,19 +309,45 @@
       createData() {
         this.$refs['dataForm'].validate((valid) => {
           if (valid) {
-            this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
-            this.temp.author = 'vue-element-admin'
-            createArticle(this.temp).then(() => {
-              this.list.unshift(this.temp)
-              this.dialogFormVisible = false
-              this.$notify({
-                title: 'Success',
-                message: '创建成功',
-                type: 'success',
-                duration: 2000
+            // this.temp.id = parseInt(Math.random() * 100) + 1024 // mock a id
+            this.dialogFormVisible = false
+            // this.list.unshift(this.temp)
+            // console.log("add one",this.list)
+            var date = this.temp.timestamp;
+            var formattedDate =
+              date.getFullYear() +
+              "-" +
+              String(date.getMonth() + 1).padStart(2, "0") +
+              "-" +
+              String(date.getDate()).padStart(2, "0") +
+              " " +
+              String(date.getHours()).padStart(2, "0") +
+              ":" +
+              String(date.getMinutes()).padStart(2, "0") +
+              ":" +
+              String(date.getSeconds()).padStart(2, "0");
+
+              this.axios.post("http://127.0.0.1:8888/detect-task/add",
+                {
+                  url: this.temp.title,
+                  status: this.temp.status,
+                  importance: this.temp.importance,
+                  date: formattedDate,
+                  remark: this.temp.remark
+                },{headers: {
+                    'Content-Type': 'application/json'
+                }})
+              .then(res=>{
+                if(res.data==true){
+                  this.$message({
+                    message: '成功创建定时检测任务',
+                    type: 'success'
+                  })
+                }
+                console.log(res.data); 
               })
-            })
-          }
+              this.getAllTask()
+            }
         })
       },
       handleUpdate(row) {
@@ -344,7 +381,7 @@
       handleDelete(row, index) {
         this.$notify({
           title: 'Success',
-          message: '删除成功',
+          message: '删除任务成功',
           type: 'success',
           duration: 2000
         })
